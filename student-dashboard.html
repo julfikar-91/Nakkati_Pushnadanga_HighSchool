@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard · Nakkati Pushnadanga High School</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#FF6B35;--orange-dark:#E8520A;--orange-light:#FFF0EA;
+  --teal:#2EC4B6;--teal-dark:#1BA89B;--teal-light:#E8FAF9;
+  --navy:#0F1C3F;--navy-mid:#1A2E5A;--navy-light:#293E73;
+  --emerald:#059669;--emerald-light:#ECFDF5;
+  --rose:#E11D48;--rose-light:#FFF1F2;
+  --amber:#F59E0B;--amber-light:#FFFBEB;
+  --purple:#7C3AED;--purple-light:#F5F3FF;
+  --gold:#FBBF24; --silver:#9CA3AF; --bronze:#B45309;
+  --gray-50:#F8FAFC;--gray-100:#F1F5F9;--gray-200:#E2E8F0;
+  --gray-300:#CBD5E1;--gray-400:#94A3B8;--gray-500:#64748B;
+  --gray-800:#1E293B;--gray-900:#0F172A;
+  --text:#1E293B;--text-sec:#64748B;
+  --t:all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  --r-md:12px;--r-lg:16px;--r-xl:24px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.04);
+  --shadow-md:0 8px 24px rgba(0,0,0,.06);
+  --shadow-lg:0 12px 32px rgba(15,28,63,.08);
+}
+html,body{height:100%;font-family:'Inter',sans-serif;background:#F4F7FB;color:var(--text)}
+body{display:flex;overflow:hidden}
+
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:var(--gray-400)}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulseGlow{0%{box-shadow:0 0 0 0 rgba(46,196,182,0.4)}70%{box-shadow:0 0 0 12px rgba(46,196,182,0)}100%{box-shadow:0 0 0 0 rgba(46,196,182,0)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.anim-1{animation:slideUp 0.6s ease forwards 0.1s;opacity:0;}
+.anim-2{animation:slideUp 0.6s ease forwards 0.2s;opacity:0;}
+.anim-3{animation:slideUp 0.6s ease forwards 0.3s;opacity:0;}
+.anim-4{animation:slideUp 0.6s ease forwards 0.4s;opacity:0;}
+
+/* ── SIDEBAR ── */
+.sidebar{width:280px;background:linear-gradient(180deg, var(--navy) 0%, #15244E 100%);display:flex;flex-direction:column;flex-shrink:0;color:white;position:relative;transition:var(--t);z-index:50;box-shadow:4px 0 24px rgba(0,0,0,0.1)}
+.sb-logo{padding:1.75rem 1.5rem;display:flex;align-items:center;gap:14px;text-decoration:none;background:rgba(0,0,0,0.15)}
+.sb-logo-ic{width:42px;height:42px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(255,107,53,0.4)}
+.sb-logo-ic svg{width:20px;height:20px;fill:white}
+.sb-logo-text{font-family:'Sora',sans-serif;font-size:14px;font-weight:800;color:white;line-height:1.2;letter-spacing:-0.01em}
+.sb-logo-sub{font-size:10px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+
+.sb-menu{flex:1;padding:2rem 1.25rem;display:flex;flex-direction:column;gap:0.5rem;overflow-y:auto}
+.sb-label{font-size:10.5px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:0.1em;margin:1rem 0 0.5rem 1rem}
+.sb-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:var(--r-md);color:rgba(255,255,255,.7);text-decoration:none;font-size:.9rem;font-weight:500;transition:var(--t);cursor:pointer;position:relative;overflow:hidden}
+.sb-item::before{content:'';position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,rgba(255,107,53,0.2),transparent);transition:var(--t);z-index:0}
+.sb-item:hover{color:white;transform:translateX(4px)}
+.sb-item.active{color:white;background:rgba(255,255,255,0.08);box-shadow:inset 3px 0 0 var(--orange)}
+.sb-item svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;position:relative;z-index:1}
+.sb-item span{position:relative;z-index:1}
+.sb-badge{margin-left:auto;background:var(--rose);color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;position:relative;z-index:1}
+
+.sb-promo{margin:1.5rem 1.25rem;padding:1.5rem;background:linear-gradient(135deg,rgba(46,196,182,0.1),rgba(46,196,182,0.02));border:1px solid rgba(46,196,182,0.2);border-radius:var(--r-lg);text-align:center}
+.sb-promo h4{font-size:.85rem;font-weight:700;color:white;margin-bottom:0.4rem}
+.sb-promo p{font-size:.75rem;color:rgba(255,255,255,.6);margin-bottom:1rem;line-height:1.5}
+.sb-promo-btn{display:inline-block;padding:8px 16px;background:var(--teal);color:white;border-radius:100px;font-size:.75rem;font-weight:700;text-decoration:none;transition:var(--t)}
+.sb-promo-btn:hover{background:var(--teal-dark);box-shadow:0 4px 12px rgba(46,196,182,0.3)}
+
+.sb-footer{padding:1.5rem 1.25rem;border-top:1px solid rgba(255,255,255,.08)}
+.sb-user{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;padding:0 0.5rem}
+.sb-u-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-dark));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.9rem;font-family:'Sora',sans-serif;box-shadow:0 0 0 2px rgba(255,255,255,0.2)}
+.sb-u-info{flex:1;overflow:hidden}
+.sb-u-name{font-size:.85rem;font-weight:700;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-u-role{font-size:.7rem;color:rgba(255,255,255,.6)}
+.sb-logout{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:rgba(255,255,255,.05);border-radius:var(--r-md);color:white;text-decoration:none;font-size:.85rem;font-weight:600;transition:var(--t);border:1px solid rgba(255,255,255,0.05);width:100%;cursor:pointer}
+.sb-logout:hover{background:var(--rose);border-color:var(--rose);box-shadow:0 4px 15px rgba(225,29,72,0.3)}
+.sb-logout svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round}
+
+/* ── MAIN CONTENT ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative}
+
+/* Header */
+.top-header{height:80px;background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;flex-shrink:0;position:sticky;top:0;z-index:40;box-shadow:0 4px 20px rgba(0,0,0,0.02)}
+.th-left{display:flex;align-items:center;gap:1rem}
+.mob-menu-btn{display:none;background:transparent;border:none;color:var(--navy);cursor:pointer}
+.th-title{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:var(--navy)}
+.th-date{font-size:.85rem;color:var(--text-sec);font-weight:500;margin-top:2px}
+
+.th-right{display:flex;align-items:center;gap:1.5rem}
+.th-search{position:relative;display:flex;align-items:center}
+.th-search svg{position:absolute;left:14px;width:16px;height:16px;stroke:var(--gray-400);fill:none;stroke-width:2.5}
+.th-search input{padding:11px 16px 11px 42px;border-radius:100px;border:1px solid var(--gray-200);background:var(--gray-50);font-size:.85rem;font-family:inherit;outline:none;transition:var(--t);width:240px}
+.th-search input:focus{border-color:var(--orange);background:white;box-shadow:0 0 0 4px rgba(255,107,53,.1);width:280px}
+.th-icon-btn{position:relative;width:44px;height:44px;border-radius:50%;background:white;border:1px solid var(--gray-200);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--t)}
+.th-icon-btn:hover{background:var(--gray-50);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.th-icon-btn svg{width:20px;height:20px;stroke:var(--gray-600);fill:none;stroke-width:2.2}
+.th-badge{position:absolute;top:0px;right:0px;width:12px;height:12px;background:var(--rose);border-radius:50%;border:2px solid white}
+
+/* Content Area */
+.content-area{flex:1;overflow-y:auto;padding:2.5rem;scroll-behavior:smooth}
+.view-panel{display:none;animation:fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards}
+.view-panel.active{display:block}
+
+/* Grid System */
+.dashboard-grid{display:grid;grid-template-columns:repeat(12, 1fr);gap:1.75rem;max-width:1400px;margin:0 auto}
+.grid-col-8{grid-column:1/9}
+.grid-col-4{grid-column:9/13}
+.grid-col-12{grid-column:1/13}
+
+/* Cards & Widgets General */
+.widget{background:white;border-radius:var(--r-xl);box-shadow:var(--shadow-md);border:1px solid rgba(226,232,240,0.8);position:relative;overflow:hidden;transition:var(--t);margin-bottom:1.75rem}
+.widget:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.w-header{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 1.75rem 1rem;border-bottom:1px solid var(--gray-100);background:rgba(248,250,252,0.3)}
+.w-title{font-family:'Sora',sans-serif;font-size:1.15rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:10px}
+.w-title svg{width:18px;height:18px;stroke:var(--orange);fill:none;stroke-width:2.5}
+.w-action{font-size:.8rem;font-weight:600;color:var(--teal);text-decoration:none;transition:var(--t)}
+.w-action:hover{color:var(--teal-dark)}
+
+/* Widget Specific: Welcome Banner */
+.w-welcome{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);color:white;padding:3rem;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
+.w-welcome::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 60%);pointer-events:none}
+.w-welcome::after{content:'';position:absolute;bottom:-30%;left:10%;width:400px;height:400px;background:radial-gradient(circle, rgba(46,196,182,0.1) 0%, transparent 60%);pointer-events:none}
+.ww-content{position:relative;z-index:2;max-width:500px}
+.ww-greeting{font-family:'Sora',sans-serif;font-size:2.2rem;font-weight:800;margin-bottom:0.75rem;line-height:1.2;text-shadow:0 4px 12px rgba(0,0,0,0.2)}
+.ww-greeting span{color:var(--orange)}
+.ww-sub{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.6;margin-bottom:1.75rem}
+.ww-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--orange);color:white;border-radius:100px;font-size:.9rem;font-weight:700;text-decoration:none;transition:var(--t);box-shadow:0 8px 24px rgba(255,107,53,0.3)}
+.ww-btn:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,107,53,0.4)}
+.ww-img{position:relative;z-index:2;width:200px;height:200px;background:url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5"/><path d="M12 12v9"/><path d="M12 12L4 7.5"/></svg>') no-repeat center;background-size:contain;opacity:0.9;animation:floatY 4s ease-in-out infinite}
+
+/* Quick Stats */
+.w-stats-container{display:flex;flex-direction:column;gap:1.5rem;height:100%}
+.stat-box{background:white;border-radius:var(--r-xl);padding:1.75rem;box-shadow:var(--shadow-md);border:1px solid rgba(226,232,240,0.8);display:flex;align-items:center;gap:1.25rem;transition:var(--t);flex:1;position:relative;overflow:hidden}
+.stat-box::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--teal);transition:var(--t)}
+.stat-box:nth-child(2)::before{background:var(--purple)}
+.stat-box:hover{transform:translateX(-4px);box-shadow:var(--shadow-lg)}
+.stat-box:hover::before{width:8px}
+.sbx-icon{width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sbx-icon svg{width:28px;height:28px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sbxi-teal{background:var(--teal-light);color:var(--teal-dark)} .sbxi-teal svg{stroke:var(--teal-dark)}
+.sbxi-purple{background:var(--purple-light);color:var(--purple)} .sbxi-purple svg{stroke:var(--purple)}
+.sbx-info{flex:1}
+.sbx-val{font-family:'Sora',sans-serif;font-size:1.85rem;font-weight:800;color:var(--navy);line-height:1.1}
+.sbx-lbl{font-size:.85rem;font-weight:600;color:var(--text-sec);margin-bottom:0.25rem;text-transform:uppercase;letter-spacing:0.05em}
+.sbx-prog{width:100%;height:6px;background:var(--gray-100);border-radius:100px;margin-top:0.6rem;overflow:hidden}
+.sbx-prog-fill{height:100%;border-radius:100px;background:var(--teal)}
+
+/* Profile Details (ID Card Style) */
+.id-card{padding:2rem;background:linear-gradient(to right, #ffffff, #fcfdfe);position:relative}
+.id-card::after{content:'';position:absolute;right:30px;top:30px;width:60px;height:60px;background:url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="%23cbd5e1" stroke-width="1" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>') no-repeat center;opacity:0.5;pointer-events:none}
+.pd-av-wrap{display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem}
+.pd-av{width:100px;height:100px;border-radius:24px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:white;display:inline-flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;box-shadow:0 12px 30px rgba(255,107,53,0.35);position:relative}
+.pd-status{position:absolute;bottom:-5px;right:-5px;width:24px;height:24px;background:var(--emerald);border:4px solid white;border-radius:50%;animation:pulseGlow 2s infinite}
+.pd-info{flex:1}
+.pd-name{font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:0.25rem}
+.pd-roll{font-size:.9rem;color:var(--text-sec);font-weight:600;display:flex;align-items:center;gap:6px}
+.pd-roll svg{width:14px;height:14px;stroke:var(--gray-400)}
+.pd-tags{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:0.75rem}
+.pd-tag{background:var(--gray-50);border:1px solid var(--gray-200);padding:6px 14px;border-radius:8px;font-size:.75rem;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:0.05em;box-shadow:var(--shadow-sm)}
+
+/* Tables */
+.res-table{width:100%;border-collapse:collapse;text-align:left}
+.res-table th{padding:1rem 1.75rem;background:var(--gray-50);font-size:.75rem;font-weight:700;color:var(--text-sec);text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid var(--gray-200);white-space:nowrap}
+.res-table td{padding:1.25rem 1.75rem;border-bottom:1px solid var(--gray-100);font-size:.85rem;color:var(--text);font-weight:500;transition:var(--t)}
+.res-table tr:last-child td{border-bottom:none}
+.res-table tr:hover td{background:rgba(248,250,252,0.8)}
+.rt-sub{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--navy)}
+.rt-icon{width:36px;height:36px;background:var(--teal-light);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--teal-dark)}
+.rt-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.rt-marks{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:var(--text)}
+.rt-total{color:var(--text-sec);font-size:.8rem;font-weight:500}
+
+/* Leaderboard Specific */
+.lb-row{transition:var(--t)}
+.lb-row.active-user{background:rgba(255,107,53,0.05);border-left:4px solid var(--orange)}
+.lb-row.active-user td{border-bottom-color:rgba(255,107,53,0.1)}
+.lb-row:hover{transform:scale(1.01);box-shadow:var(--shadow-md);background:white;z-index:2;position:relative}
+.rank-badge{width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;color:white;font-family:'Sora',sans-serif}
+.rank-1{background:linear-gradient(135deg, #FDE047, var(--gold));box-shadow:0 4px 10px rgba(251,191,36,0.4)}
+.rank-2{background:linear-gradient(135deg, #D1D5DB, var(--silver));box-shadow:0 4px 10px rgba(156,163,175,0.4)}
+.rank-3{background:linear-gradient(135deg, #FDBA74, var(--bronze));box-shadow:0 4px 10px rgba(180,83,9,0.4)}
+.rank-other{background:var(--gray-100);color:var(--text-sec)}
+.lb-av{width:36px;height:36px;border-radius:50%;background:var(--gray-200);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:var(--text-sec)}
+
+/* Status Badges */
+.badge-grade{display:inline-flex;align-items:center;justify-content:center;padding:4px 12px;border-radius:100px;font-size:.75rem;font-weight:800;letter-spacing:0.05em}
+.bg-a{background:var(--emerald-light);color:var(--emerald)}
+.bg-b{background:var(--blue-light);color:var(--blue)}
+.bg-c{background:var(--amber-light);color:var(--amber)}
+.badge-status{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em}
+.bs-pending{background:var(--amber-light);color:var(--amber);border:1px solid rgba(245,158,11,0.2)}
+.bs-approved{background:var(--emerald-light);color:var(--emerald);border:1px solid rgba(5,150,105,0.2)}
+.bs-rejected{background:var(--rose-light);color:var(--rose);border:1px solid rgba(225,29,72,0.2)}
+
+/* Forms */
+.form-group{margin-bottom:1.25rem}
+.form-label{display:block;font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.form-input,.form-select,.form-textarea{width:100%;padding:12px 16px;border:2px solid var(--gray-200);border-radius:var(--r-md);font-size:.9rem;font-family:inherit;outline:none;transition:var(--t);background:white}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,107,53,0.1)}
+.form-textarea{resize:vertical;min-height:100px}
+.btn-submit{padding:14px 28px;background:var(--orange);color:white;border:none;border-radius:100px;font-size:1rem;font-weight:700;cursor:pointer;transition:var(--t);box-shadow:var(--shadow-orange);display:inline-flex;align-items:center;gap:8px}
+.btn-submit:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,107,53,0.4)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .dashboard-grid{grid-template-columns:repeat(8, 1fr)}
+  .grid-col-8, .grid-col-4, .grid-col-12{grid-column:1/9}
+  .w-stats-container{flex-direction:row}
+}
+@media(max-width:900px){
+  .dashboard-grid{grid-template-columns:1fr}
+  .w-stats-container{flex-direction:column}
+  .top-header{padding:0 1.5rem}
+  .content-area{padding:1.5rem}
+  .th-search{display:none}
+}
+@media(max-width:768px){
+  body{flex-direction:column}
+  .sidebar{position:fixed;left:-100%;top:0;bottom:0;width:280px;box-shadow:var(--shadow-lg)}
+  .sidebar.open{left:0}
+  .mob-menu-btn{display:block}
+  .res-table th, .res-table td{padding:1rem}
+  .ww-greeting{font-size:1.75rem}
+  .pd-av-wrap{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<nav class="sidebar" id="sidebar">
+  <a href="index.html" class="sb-logo">
+    <img src="images/nakkatischool_logo.png" style="width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:0 4px 15px rgba(0,0,0,.15);flex-shrink:0" alt="Logo">
+    <div>
+      <div class="sb-logo-text">Student Portal</div>
+      <div class="sb-logo-sub">Nakkati Pushnadanga</div>
+    </div>
+  </a>
+  <div class="sb-menu">
+    <div class="sb-label">Main Menu</div>
+    <div class="sb-item active" onclick="switchView('dashboard', this)">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+      <span>Dashboard</span>
+    </div>
+    <div class="sb-item" onclick="switchView('leaderboard', this)">
+      <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10M5 4h14v5a7 7 0 01-14 0V4z"/></svg>
+      <span>Leaderboard</span>
+      <span class="sb-badge">Hot</span>
+    </div>
+    <div class="sb-item" onclick="switchView('academics', this)">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Academics</span>
+    </div>
+    <div class="sb-item" onclick="switchView('results', this)">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Results & Exams</span>
+    </div>
+    <div class="sb-item" onclick="switchView('attendance', this)">
+      <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <span>Attendance</span>
+    </div>
+    <div class="sb-item" onclick="switchView('tc', this)">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <span>Request TC</span>
+    </div>
+  </div>
+  
+  <div class="sb-promo">
+    <h4>Upcoming Exam</h4>
+    <p>Final Assessments begin from Nov 15. Prepare well!</p>
+    <a href="#" class="sb-promo-btn" onclick="switchView('results', document.querySelectorAll('.sb-item')[3])">View Routine</a>
+  </div>
+
+  <div class="sb-footer">
+    <div class="sb-user">
+      <div class="sb-u-av" id="sbAvatar">ST</div>
+      <div class="sb-u-info">
+        <div class="sb-u-name" id="sbName">Student Name</div>
+        <div class="sb-u-role">Student</div>
+      </div>
+    </div>
+    <button class="sb-logout" onclick="doLogout()">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> 
+      <span>Logout securely</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MAIN CONTENT ── -->
+<main class="main">
+  <div id="mobOverlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:40;display:none" onclick="toggleSidebar()"></div>
+
+  <header class="top-header">
+    <div class="th-left">
+      <button class="mob-menu-btn" onclick="toggleSidebar()">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div>
+        <div class="th-title" id="pageTitle">Dashboard</div>
+        <div class="th-date" id="currentDate">Loading Date...</div>
+      </div>
+    </div>
+    <div class="th-right">
+      <div class="th-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search resources...">
+      </div>
+      <div class="th-icon-btn">
+        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="th-badge"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="content-area">
+    
+    <!-- ================= VIEW: DASHBOARD ================= -->
+    <div id="view-dashboard" class="view-panel active">
+      <div class="dashboard-grid">
+        
+        <!-- Welcome Banner -->
+        <div class="widget w-welcome grid-col-8 anim-1">
+          <div class="ww-content">
+            <div class="ww-greeting">Welcome back,<br><span id="wwName">Student</span> 👋</div>
+            <p class="ww-sub">You have <strong>2</strong> new notifications and your attendance is looking great this month. Keep up the excellent work!</p>
+            <button class="ww-btn" onclick="switchView('results', document.querySelectorAll('.sb-item')[3])">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              View Academic Performance
+            </button>
+          </div>
+          <div class="ww-img"></div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="w-stats-container grid-col-4 anim-2">
+          <div class="stat-box">
+            <div class="sbx-icon sbxi-teal">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="sbx-info">
+              <div class="sbx-lbl">Attendance Rate</div>
+              <div class="sbx-val" id="dbAttVal">92%</div>
+              <div class="sbx-prog"><div class="sbx-prog-fill" style="width:92%"></div></div>
+            </div>
+          </div>
+          <div class="stat-box">
+            <div class="sbx-icon sbxi-purple">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="sbx-info">
+              <div class="sbx-lbl">Overall Grade</div>
+              <div class="sbx-val" id="scGrade">A</div>
+              <div class="sbx-prog"><div class="sbx-prog-fill sf-p" style="width:85%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="widget grid-col-12 anim-3">
+          <div class="w-header">
+            <div class="w-title">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Student Profile Card
+            </div>
+            <a href="#" class="w-action">Edit Details</a>
+          </div>
+          <div class="id-card">
+            <div class="pd-av-wrap">
+              <div class="pd-av" id="pdAvatar">ST<div class="pd-status"></div></div>
+              <div class="pd-info">
+                <div class="pd-name" id="pdName">Student Name</div>
+                <div class="pd-roll" id="pdRoll"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Roll No: ---</div>
+                <div class="pd-tags">
+                  <span class="pd-tag" id="pdClass">Class</span>
+                  <span class="pd-tag" id="pdSec">Sec A</span>
+                  <span class="pd-tag" style="background:var(--teal-light);color:var(--teal-dark);border-color:transparent">Session 2024-25</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= VIEW: LEADERBOARD ================= -->
+    <div id="view-leaderboard" class="view-panel">
+      <div class="dashboard-grid">
+        <div class="widget grid-col-12 anim-1">
+          <div class="w-header">
+            <div class="w-title">
+              <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10M5 4h14v5a7 7 0 01-14 0V4z"/></svg>
+              Class <span id="lbClassTitle">IX</span> Leaderboard
+            </div>
+            <div class="w-action" style="background:var(--orange-light);padding:4px 12px;border-radius:100px;color:var(--orange)">Top Performers</div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="res-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Student Name</th>
+                  <th>Roll No</th>
+                  <th>Total Marks</th>
+                  <th>Overall Grade</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboardBody">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= VIEW: ACADEMICS ================= -->
+    <div id="view-academics" class="view-panel">
+      <div class="dashboard-grid">
+        <div class="widget grid-col-12 anim-1">
+          <div class="w-header">
+            <div class="w-title">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Weekly Class Routine
+            </div>
+            <button class="ww-btn" style="padding:6px 14px;font-size:0.75rem;background:var(--teal)">Download PDF</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="res-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>1st Period (10:40 - 11:20)</th>
+                  <th>2nd Period (11:20 - 12:00)</th>
+                  <th>3rd Period (12:00 - 12:40)</th>
+                  <th>4th Period (12:40 - 01:20)</th>
+                  <th>Tiffin (01:20 - 02:00)</th>
+                  <th>5th Period (02:00 - 02:40)</th>
+                  <th>6th Period (02:40 - 03:20)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Monday</strong></td><td>Bengali<br><span style="font-size:0.75rem;color:var(--text-sec)">A. Roy</span></td><td>English<br><span style="font-size:0.75rem;color:var(--text-sec)">S. Das</span></td><td>Mathematics<br><span style="font-size:0.75rem;color:var(--text-sec)">R. Sen</span></td><td>Geography<br><span style="font-size:0.75rem;color:var(--text-sec)">K. Bose</span></td><td style="background:var(--gray-50);text-align:center;color:var(--text-sec)">RECESS</td><td>Life Science<br><span style="font-size:0.75rem;color:var(--text-sec)">M. Mitra</span></td><td>History<br><span style="font-size:0.75rem;color:var(--text-sec)">P. Ghosh</span></td></tr>
+                <tr><td><strong>Tuesday</strong></td><td>Mathematics<br><span style="font-size:0.75rem;color:var(--text-sec)">R. Sen</span></td><td>Bengali<br><span style="font-size:0.75rem;color:var(--text-sec)">A. Roy</span></td><td>Physical Sci.<br><span style="font-size:0.75rem;color:var(--text-sec)">T. Saha</span></td><td>English<br><span style="font-size:0.75rem;color:var(--text-sec)">S. Das</span></td><td style="background:var(--gray-50);text-align:center;color:var(--text-sec)">RECESS</td><td>Geography<br><span style="font-size:0.75rem;color:var(--text-sec)">K. Bose</span></td><td>Life Science<br><span style="font-size:0.75rem;color:var(--text-sec)">M. Mitra</span></td></tr>
+                <tr><td><strong>Wednesday</strong></td><td>English<br><span style="font-size:0.75rem;color:var(--text-sec)">S. Das</span></td><td>History<br><span style="font-size:0.75rem;color:var(--text-sec)">P. Ghosh</span></td><td>Bengali<br><span style="font-size:0.75rem;color:var(--text-sec)">A. Roy</span></td><td>Mathematics<br><span style="font-size:0.75rem;color:var(--text-sec)">R. Sen</span></td><td style="background:var(--gray-50);text-align:center;color:var(--text-sec)">RECESS</td><td>Physical Sci.<br><span style="font-size:0.75rem;color:var(--text-sec)">T. Saha</span></td><td>Computer<br><span style="font-size:0.75rem;color:var(--text-sec)">N. Pal</span></td></tr>
+                <tr><td><strong>Thursday</strong></td><td>Life Science<br><span style="font-size:0.75rem;color:var(--text-sec)">M. Mitra</span></td><td>Physical Sci.<br><span style="font-size:0.75rem;color:var(--text-sec)">T. Saha</span></td><td>English<br><span style="font-size:0.75rem;color:var(--text-sec)">S. Das</span></td><td>Bengali<br><span style="font-size:0.75rem;color:var(--text-sec)">A. Roy</span></td><td style="background:var(--gray-50);text-align:center;color:var(--text-sec)">RECESS</td><td>Mathematics<br><span style="font-size:0.75rem;color:var(--text-sec)">R. Sen</span></td><td>Geography<br><span style="font-size:0.75rem;color:var(--text-sec)">K. Bose</span></td></tr>
+                <tr><td><strong>Friday</strong></td><td>History<br><span style="font-size:0.75rem;color:var(--text-sec)">P. Ghosh</span></td><td>Mathematics<br><span style="font-size:0.75rem;color:var(--text-sec)">R. Sen</span></td><td>Geography<br><span style="font-size:0.75rem;color:var(--text-sec)">K. Bose</span></td><td>Life Science<br><span style="font-size:0.75rem;color:var(--text-sec)">M. Mitra</span></td><td style="background:var(--gray-50);text-align:center;color:var(--text-sec)">RECESS</td><td>Bengali<br><span style="font-size:0.75rem;color:var(--text-sec)">A. Roy</span></td><td>English<br><span style="font-size:0.75rem;color:var(--text-sec)">S. Das</span></td></tr>
+                <tr><td><strong>Saturday</strong></td><td>Physical Sci.<br><span style="font-size:0.75rem;color:var(--text-sec)">T. Saha</span></td><td>Bengali<br><span style="font-size:0.75rem;color:var(--text-sec)">A. Roy</span></td><td>Mathematics<br><span style="font-size:0.75rem;color:var(--text-sec)">R. Sen</span></td><td>-</td><td style="background:var(--gray-50);text-align:center;color:var(--text-sec)">DISMISSAL</td><td>-</td><td>-</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= VIEW: RESULTS & EXAMS ================= -->
+    <div id="view-results" class="view-panel">
+      <div class="dashboard-grid">
+        
+        <!-- Exam Routine -->
+        <div class="widget grid-col-12 anim-1">
+          <div class="w-header">
+            <div class="w-title">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Upcoming Exam Routine (Annual Final)
+            </div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="res-table">
+              <thead>
+                <tr><th>Date</th><th>Day</th><th>Subject</th><th>Time</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>15 Nov 2026</td><td>Friday</td><td><strong>Bengali (First Language)</strong></td><td>11:00 AM - 02:00 PM</td></tr>
+                <tr><td>18 Nov 2026</td><td>Monday</td><td><strong>English (Second Language)</strong></td><td>11:00 AM - 02:00 PM</td></tr>
+                <tr><td>20 Nov 2026</td><td>Wednesday</td><td><strong>Mathematics</strong></td><td>11:00 AM - 02:00 PM</td></tr>
+                <tr><td>22 Nov 2026</td><td>Friday</td><td><strong>Physical Science</strong></td><td>11:00 AM - 02:00 PM</td></tr>
+                <tr><td>25 Nov 2026</td><td>Monday</td><td><strong>Life Science</strong></td><td>11:00 AM - 02:00 PM</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Results Table -->
+        <div class="widget grid-col-12 anim-2">
+          <div class="w-header">
+            <div class="w-title">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Latest Examination Results (Half-Yearly 2026)
+            </div>
+            <button class="ww-btn" style="padding:6px 14px;font-size:0.75rem;background:var(--teal)">Download Marksheet</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="res-table">
+              <thead>
+                <tr><th>Subject</th><th>Max Marks</th><th>Marks Obtained</th><th>Grade</th><th>Status</th></tr>
+              </thead>
+              <tbody id="resultList">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= VIEW: ATTENDANCE ================= -->
+    <div id="view-attendance" class="view-panel">
+      <div class="dashboard-grid">
+        <div class="widget grid-col-12 anim-1">
+          <div class="w-header">
+            <div class="w-title">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Attendance Record
+            </div>
+          </div>
+          <div style="padding:2.5rem">
+            <div style="display:flex;align-items:center;gap:4rem;flex-wrap:wrap">
+              <div style="flex:1;min-width:300px">
+                <h3 style="font-family:'Sora',sans-serif;color:var(--navy);margin-bottom:1.5rem">Current Session Overview</h3>
+                <div style="display:flex;gap:1.5rem;margin-bottom:2.5rem">
+                  <div style="background:var(--emerald-light);border:1px solid rgba(5,150,105,0.2);padding:1.5rem;border-radius:var(--r-lg);flex:1">
+                    <div style="font-size:2.5rem;font-weight:800;color:var(--emerald);font-family:'Sora',sans-serif;line-height:1">184</div>
+                    <div style="font-size:.85rem;color:var(--text-sec);font-weight:600;margin-top:8px">Days Present</div>
+                  </div>
+                  <div style="background:var(--rose-light);border:1px solid rgba(225,29,72,0.2);padding:1.5rem;border-radius:var(--r-lg);flex:1">
+                    <div style="font-size:2.5rem;font-weight:800;color:var(--rose);font-family:'Sora',sans-serif;line-height:1">16</div>
+                    <div style="font-size:.85rem;color:var(--text-sec);font-weight:600;margin-top:8px">Days Absent</div>
+                  </div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:0.75rem">
+                    <span style="font-weight:700;color:var(--navy);font-size:1.1rem">Overall Percentage</span>
+                    <span style="font-weight:800;color:var(--teal);font-size:1.1rem">92%</span>
+                  </div>
+                  <div class="sbx-prog" style="height:14px"><div class="sbx-prog-fill" style="width:92%"></div></div>
+                </div>
+              </div>
+              <div style="flex:1;min-width:300px;background:var(--gray-50);padding:2rem;border-radius:var(--r-xl);border:1px solid var(--gray-200)">
+                <h4 style="font-family:'Sora',sans-serif;color:var(--navy);margin-bottom:1.25rem">Recent Absences</h4>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:1.25rem">
+                  <li style="display:flex;align-items:center;gap:14px;font-size:.95rem;color:var(--text)">
+                    <div style="width:12px;height:12px;background:var(--rose);border-radius:50%;box-shadow:0 0 0 4px rgba(225,29,72,0.1)"></div>
+                    <strong>12 Oct 2026</strong> <span style="color:var(--text-sec)">- Medical Leave</span>
+                  </li>
+                  <li style="display:flex;align-items:center;gap:14px;font-size:.95rem;color:var(--text)">
+                    <div style="width:12px;height:12px;background:var(--rose);border-radius:50%;box-shadow:0 0 0 4px rgba(225,29,72,0.1)"></div>
+                    <strong>05 Sep 2026</strong> <span style="color:var(--text-sec)">- Family Event</span>
+                  </li>
+                  <li style="display:flex;align-items:center;gap:14px;font-size:.95rem;color:var(--text)">
+                    <div style="width:12px;height:12px;background:var(--rose);border-radius:50%;box-shadow:0 0 0 4px rgba(225,29,72,0.1)"></div>
+                    <strong>18 Aug 2026</strong> <span style="color:var(--text-sec)">- Unexcused</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= VIEW: REQUEST TC ================= -->
+    <div id="view-tc" class="view-panel">
+      <div class="dashboard-grid">
+        
+        <!-- Application Form -->
+        <div class="widget grid-col-8 anim-1">
+          <div class="w-header">
+            <div class="w-title">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Apply for Transfer Certificate
+            </div>
+          </div>
+          <div style="padding:2.5rem">
+            <p style="font-size:.9rem;color:var(--text-sec);margin-bottom:1.5rem;line-height:1.6">
+              Submit your reason below. Ensure all library books and school dues are cleared prior to application.
+            </p>
+            <div class="form-group">
+              <label class="form-label">Reason for leaving</label>
+              <select class="form-select" id="tcReason">
+                <option value="">Select Reason...</option>
+                <option>Family Relocation / Transfer</option>
+                <option>Completed Highest Class (Pass Out)</option>
+                <option>Admission to another institution</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Additional Comments (Optional)</label>
+              <textarea class="form-textarea" id="tcComments" placeholder="Any specific details you'd like to share..."></textarea>
+            </div>
+            <div style="background:var(--amber-light);border:1px solid rgba(245,158,11,.3);padding:14px;border-radius:var(--r-md);font-size:.85rem;color:#92400E;margin-bottom:2rem;display:flex;gap:12px;align-items:flex-start">
+              <svg viewBox="0 0 24 24" width="20" height="20" style="stroke:currentColor;fill:none;flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <div><strong>Note:</strong> TC generation usually takes 3-5 working days. You can track the status below.</div>
+            </div>
+            <button class="btn-submit" onclick="submitTCRequest()">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Submit Application
+            </button>
+          </div>
+        </div>
+
+        <!-- Request History -->
+        <div class="widget grid-col-12 anim-2">
+          <div class="w-header">
+            <div class="w-title">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              My TC Requests History
+            </div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="res-table">
+              <thead>
+                <tr>
+                  <th>Reference ID</th>
+                  <th>Date Applied</th>
+                  <th>Reason</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="tcHistoryBody">
+                <tr id="emptyTcRow">
+                  <td colspan="4" style="text-align:center;color:var(--gray-400);padding:3rem;font-size:0.9rem">No requests found. You haven't applied for a TC yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+
+<script>
+// Dummy Database
+const STUDENTS = {
+  '1001':{name:'Ananya Biswas',dob:'15/08/2010',father:'Ranjit Biswas',mobile:'98765-43210',addr:'Nakkati, Cooch Behar',cls:'Class IX',section:'A',roll:'1001',results:[{sub:'Bengali',full:100,obt:82,grade:'A'},{sub:'English',full:100,obt:76,grade:'B'},{sub:'Mathematics',full:100,obt:91,grade:'A'},{sub:'Physical Science',full:100,obt:88,grade:'A'},{sub:'Life Science',full:100,obt:85,grade:'A'},{sub:'History',full:100,obt:79,grade:'B'},{sub:'Geography',full:100,obt:83,grade:'A'}]},
+  '1002':{name:'Raju Sarkar',dob:'22/03/2009',father:'Tapan Sarkar',mobile:'97650-12340',addr:'Pushnadanga, Cooch Behar',cls:'Class X',section:'B',roll:'1002',results:[{sub:'Bengali',full:100,obt:74,grade:'B'},{sub:'English',full:100,obt:68,grade:'B'},{sub:'Mathematics',full:100,obt:79,grade:'B'},{sub:'Physical Science',full:100,obt:71,grade:'B'},{sub:'Life Science',full:100,obt:77,grade:'B'},{sub:'History',full:100,obt:65,grade:'C'},{sub:'Geography',full:100,obt:80,grade:'A'}]},
+  '1003':{name:'Priya Das',dob:'05/11/2011',father:'Subal Das',mobile:'90123-45678',addr:'Haribhanga, Cooch Behar',cls:'Class VIII',section:'A',roll:'1003',results:[{sub:'Bengali',full:100,obt:93,grade:'A'},{sub:'English',full:100,obt:87,grade:'A'},{sub:'Mathematics',full:100,obt:95,grade:'A'},{sub:'Science',full:100,obt:90,grade:'A'},{sub:'Social Studies',full:100,obt:88,grade:'A'},{sub:'Sanskrit',full:100,obt:80,grade:'A'}]}
+};
+
+// Leaderboard Database for Class IX
+const CLASS_IX_LEADERBOARD = [
+  { name: 'Arindam Ghosh', roll: '1005', score: 680, max: 700, grade: 'A+' },
+  { name: 'Ananya Biswas', roll: '1001', score: 586, max: 700, grade: 'A' },
+  { name: 'Riya Das', roll: '1012', score: 540, max: 700, grade: 'A' },
+  { name: 'Rahul Sen', roll: '1023', score: 490, max: 700, grade: 'B' },
+  { name: 'Subham Roy', roll: '1045', score: 450, max: 700, grade: 'B' },
+  { name: 'Kushal Pal', roll: '1051', score: 410, max: 700, grade: 'C' }
+];
+
+function init() {
+  // Current Date
+  const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', opts);
+
+  // Get student from session storage or default to 1001
+  let stored = sessionStorage.getItem('loggedStudent');
+  let student = stored ? JSON.parse(stored) : STUDENTS['1001'];
+  
+  // Populate Header & Sidebar Avatars
+  const initials = student.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('sbAvatar').textContent = initials;
+  document.getElementById('pdAvatar').innerHTML = initials + '<div class="pd-status"></div>';
+  document.getElementById('sbName').textContent = student.name;
+  
+  // Welcome
+  document.getElementById('wwName').textContent = student.name.split(' ')[0];
+
+  // Profile Widget
+  document.getElementById('pdName').textContent = student.name;
+  document.getElementById('pdRoll').innerHTML = `<svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--gray-400);fill:none;stroke-width:2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Roll No: ${student.roll}`;
+  document.getElementById('pdClass').textContent = student.cls;
+  document.getElementById('pdSec').textContent = 'Sec ' + student.section;
+  
+  document.getElementById('lbClassTitle').textContent = student.cls.replace('Class ', '');
+
+  // Results
+  let totalObt=0, totalFull=0;
+  document.getElementById('resultList').innerHTML = student.results.map(r => {
+    totalObt += r.obt; totalFull += r.full;
+    const bgClass = r.grade==='A'?'bg-a':r.grade==='B'?'bg-b':'bg-c';
+    return `<tr>
+      <td>
+        <div class="rt-sub">
+          <div class="rt-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          ${r.sub}
+        </div>
+      </td>
+      <td class="rt-total">${r.full}</td>
+      <td class="rt-marks">${r.obt}</td>
+      <td><span class="badge-grade ${bgClass}">${r.grade}</span></td>
+      <td style="color:var(--emerald);font-weight:700">✓ Pass</td>
+    </tr>`;
+  }).join('');
+
+  // Overall Grade
+  const pct = Math.round(totalObt/totalFull*100);
+  document.getElementById('scGrade').textContent = pct>=80?'A':pct>=60?'B':'C';
+
+  // Populate Leaderboard
+  populateLeaderboard(student.roll);
+}
+
+function populateLeaderboard(currentRoll) {
+  let html = '';
+  CLASS_IX_LEADERBOARD.forEach((std, idx) => {
+    const rank = idx + 1;
+    let rankHtml = '';
+    if(rank === 1) rankHtml = `<div class="rank-badge rank-1">1</div>`;
+    else if(rank === 2) rankHtml = `<div class="rank-badge rank-2">2</div>`;
+    else if(rank === 3) rankHtml = `<div class="rank-badge rank-3">3</div>`;
+    else rankHtml = `<div class="rank-badge rank-other">${rank}</div>`;
+
+    const isCurrentUser = (std.roll === currentRoll);
+    const rowClass = isCurrentUser ? 'lb-row active-user' : 'lb-row';
+    const avInit = std.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    const bgClass = std.grade.includes('A')?'bg-a':std.grade==='B'?'bg-b':'bg-c';
+
+    html += `
+      <tr class="${rowClass}">
+        <td>${rankHtml}</td>
+        <td>
+          <div class="rt-sub">
+            <div class="lb-av" ${isCurrentUser ? 'style="background:var(--orange);color:white"' : ''}>${avInit}</div>
+            ${std.name} ${isCurrentUser ? '<span class="sb-badge" style="margin-left:8px;background:var(--orange)">You</span>' : ''}
+          </div>
+        </td>
+        <td style="color:var(--text-sec);font-weight:600">${std.roll}</td>
+        <td class="rt-marks">${std.score} <span style="font-size:0.75rem;color:var(--gray-400);font-weight:600">/ ${std.max}</span></td>
+        <td><span class="badge-grade ${bgClass}">${std.grade}</span></td>
+      </tr>
+    `;
+  });
+  document.getElementById('leaderboardBody').innerHTML = html;
+}
+
+function doLogout(){
+  sessionStorage.removeItem('loggedStudent');
+  window.location.href = 'index.html';
+}
+
+// Mobile Sidebar Toggle
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('mobOverlay');
+  if(sb.classList.contains('open')){
+    sb.classList.remove('open');
+    ov.style.display = 'none';
+  } else {
+    sb.classList.add('open');
+    ov.style.display = 'block';
+  }
+}
+
+// View Switching Logic
+function switchView(viewId, element) {
+  // Update sidebar active state
+  document.querySelectorAll('.sb-item').forEach(el => el.classList.remove('active'));
+  if(element) element.classList.add('active');
+
+  // Update page title
+  const titleMap = {
+    'dashboard': 'Dashboard',
+    'leaderboard': 'Class Leaderboard',
+    'academics': 'Academics',
+    'results': 'Results & Exams',
+    'attendance': 'Attendance',
+    'tc': 'Transfer Certificate'
+  };
+  document.getElementById('pageTitle').textContent = titleMap[viewId];
+
+  // Hide all panels, show active
+  document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
+  document.getElementById('view-' + viewId).classList.add('active');
+
+  // On mobile, close sidebar after clicking
+  if(window.innerWidth <= 768) {
+    toggleSidebar();
+  }
+}
+
+// TC Request Submission
+let tcCounter = 9012;
+function submitTCRequest() {
+  const reason = document.getElementById('tcReason').value;
+  if(!reason) {
+    alert("Please select a reason for leaving.");
+    return;
+  }
+
+  // Remove empty row text
+  const emptyRow = document.getElementById('emptyTcRow');
+  if(emptyRow) emptyRow.remove();
+
+  // Generate Date
+  const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  tcCounter++;
+
+  // Add new row
+  const tbody = document.getElementById('tcHistoryBody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><strong>TC-26-${tcCounter}</strong></td>
+    <td>${today}</td>
+    <td>${reason}</td>
+    <td><span class="badge-status bs-pending">Pending</span></td>
+  `;
+  tbody.insertBefore(tr, tbody.firstChild);
+
+  // Reset form
+  document.getElementById('tcReason').value = '';
+  document.getElementById('tcComments').value = '';
+
+  alert(`Your application has been submitted successfully! Reference ID: TC-26-${tcCounter}`);
+}
+
+window.addEventListener('load', init);
+</script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Login · Nakkati Pushnadanga High School</title>
+<meta name="description" content="Student portal login for Nakkati Pushnadanga High School. Access your results, roll number, class and subjects.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#FF6B35;--orange-dark:#E8520A;--orange-light:#FFF0EA;
+  --teal:#2EC4B6;--teal-dark:#1BA89B;--teal-light:#E8FAF9;
+  --navy:#0F1C3F;--navy-mid:#1A2E5A;
+  --emerald:#059669;--emerald-light:#ECFDF5;
+  --rose:#E11D48;--white:#FFFFFF;
+  --gray-100:#F1F5F9;--gray-200:#E2E8F0;--gray-400:#94A3B8;--gray-500:#64748B;--gray-600:#475569;
+  --text:#1E293B;--text-sec:#64748B;
+  --t:all .25s ease;
+}
+body{font-family:'Inter',sans-serif;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--navy)}
+a{text-decoration:none}
+
+/* ── LEFT PANEL ── */
+.left-panel{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,#0F1C3F 0%,#1A3060 50%,#0D2544 100%);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:3rem 3.5rem;min-height:100vh
+}
+/* Animated gradient orbs */
+.orb{position:absolute;border-radius:50%;pointer-events:none;animation:orbFloat 6s ease-in-out infinite}
+.orb-1{width:350px;height:350px;background:radial-gradient(circle,rgba(255,107,53,.18) 0%,transparent 70%);top:-80px;right:-80px;animation-duration:7s}
+.orb-2{width:280px;height:280px;background:radial-gradient(circle,rgba(46,196,182,.15) 0%,transparent 70%);bottom:-60px;left:-60px;animation-duration:9s;animation-delay:-3s}
+.orb-3{width:180px;height:180px;background:radial-gradient(circle,rgba(255,107,53,.1) 0%,transparent 70%);top:40%;left:10%;animation-duration:5s;animation-delay:-1.5s}
+@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.05)}}
+
+/* Grid dots background */
+.left-panel::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:28px 28px;pointer-events:none
+}
+/* Floating cards on left */
+.lp-card{
+  position:absolute;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px 18px;
+  display:flex;align-items:center;gap:10px;animation:floatY 4s ease-in-out infinite;
+  white-space:nowrap;z-index:2
+}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.lp-card-1{top:14%;left:5%;animation-delay:0s}
+.lp-card-2{top:28%;right:5%;animation-delay:1.2s}
+.lp-card-3{bottom:22%;left:8%;animation-delay:0.6s}
+.lp-card-4{bottom:38%;right:3%;animation-delay:1.8s}
+.lp-ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lp-ic svg{width:16px;height:16px;fill:none;stroke-width:2;stroke-linecap:round}
+.lp-ic-o{background:rgba(255,107,53,.25)} .lp-ic-o svg{stroke:var(--orange)}
+.lp-ic-t{background:rgba(46,196,182,.2)} .lp-ic-t svg{stroke:var(--teal)}
+.lp-ic-w{background:rgba(255,255,255,.15)} .lp-ic-w svg{stroke:white}
+.lp-ic-e{background:rgba(5,150,105,.2)} .lp-ic-e svg{stroke:#34D399}
+.lp-card-title{font-size:.75rem;font-weight:700;color:white;line-height:1.3}
+.lp-card-sub{font-size:.65rem;color:rgba(255,255,255,.55)}
+
+/* Left main content */
+.lp-inner{position:relative;z-index:3;text-align:center;max-width:360px}
+.lp-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:2.5rem;text-decoration:none}
+.lp-logo-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(255,107,53,.4)}
+.lp-logo-icon svg{width:24px;height:24px;fill:white}
+.lp-logo-text{font-family:'Sora',sans-serif;font-size:13px;font-weight:800;color:white;text-align:left;line-height:1.3}
+.lp-logo-sub{font-size:9px;font-weight:500;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em}
+.lp-headline{font-family:'Sora',sans-serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:800;color:white;line-height:1.2;margin-bottom:1rem}
+.lp-headline span{background:linear-gradient(135deg,var(--orange),#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lp-desc{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:2rem}
+/* Big illustration SVG area */
+.lp-illustration{position:relative;width:100%;max-width:320px;margin:0 auto 2rem;animation:illusFloat 5s ease-in-out infinite}
+@keyframes illusFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.illus-svg{width:100%;height:auto;display:block}
+/* Stats row */
+.lp-stats{display:flex;gap:1.5rem;justify-content:center}
+.lp-stat{text-align:center}
+.lp-stat-num{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:white}
+.lp-stat-num span{color:var(--orange)}
+.lp-stat-lbl{font-size:.65rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.07em;margin-top:.15rem}
+.lp-divider{width:1px;background:rgba(255,255,255,.15);align-self:stretch}
+
+/* ── RIGHT PANEL ── */
+.right-panel{
+  background:var(--white);display:flex;flex-direction:column;justify-content:center;
+  padding:3rem 4rem;overflow-y:auto;min-height:100vh
+}
+.rp-back{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:var(--text-sec);text-decoration:none;margin-bottom:2.5rem;transition:var(--t)}
+.rp-back:hover{color:var(--navy)}
+.rp-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.rp-eyebrow{display:inline-flex;align-items:center;gap:7px;background:var(--orange-light);color:var(--orange);font-size:.73rem;font-weight:700;padding:5px 14px;border-radius:100px;margin-bottom:1.25rem;letter-spacing:.04em;text-transform:uppercase}
+.rp-eyebrow-dot{width:6px;height:6px;background:var(--orange);border-radius:50%;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.rp-title{font-family:'Sora',sans-serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:.5rem}
+.rp-sub{font-size:.88rem;color:var(--text-sec);line-height:1.7;margin-bottom:2rem}
+/* Form */
+.form-group{margin-bottom:1.25rem}
+.form-label{display:block;font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:.45rem}
+.form-label span{color:var(--orange)}
+.input-wrap{position:relative}
+.input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none}
+.input-icon svg{width:17px;height:17px;stroke:var(--gray-400);fill:none;stroke-width:2;stroke-linecap:round}
+.form-input{width:100%;padding:12px 14px 12px 44px;border:1.5px solid var(--gray-200);border-radius:12px;font-size:.9rem;font-family:inherit;color:var(--text);background:var(--gray-100);transition:var(--t);outline:none}
+.form-input:focus{border-color:var(--orange);background:white;box-shadow:0 0 0 4px rgba(255,107,53,.1)}
+.pass-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:2px}
+.pass-toggle svg{width:17px;height:17px;stroke:var(--gray-400);fill:none;stroke-width:2;stroke-linecap:round;display:block}
+.pass-toggle:hover svg{stroke:var(--orange)}
+.form-hint{font-size:.73rem;color:var(--text-sec);margin-top:.4rem}
+.error-box{background:#FFF1F2;border:1px solid rgba(225,29,72,.2);border-radius:10px;padding:.75rem 1rem;display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--rose);margin-bottom:1rem;display:none}
+.error-box svg{width:16px;height:16px;stroke:var(--rose);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.btn-submit{width:100%;padding:14px;border:none;border-radius:100px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:white;font-size:.95rem;font-weight:700;cursor:pointer;transition:var(--t);font-family:inherit;box-shadow:0 8px 24px rgba(255,107,53,.35);display:flex;align-items:center;justify-content:center;gap:8px;margin-top:.5rem}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,107,53,.45)}
+.btn-submit svg{width:17px;height:17px;stroke:white;fill:none;stroke-width:2.5;stroke-linecap:round}
+.divider-text{display:flex;align-items:center;gap:.75rem;margin:1.5rem 0;font-size:.75rem;color:var(--gray-400)}
+.divider-text::before,.divider-text::after{content:'';flex:1;height:1px;background:var(--gray-200)}
+.btn-apply{width:100%;padding:13px;border:2px solid var(--teal);border-radius:100px;background:transparent;color:var(--teal-dark);font-size:.9rem;font-weight:700;cursor:pointer;transition:var(--t);font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-apply:hover{background:var(--teal);color:white;transform:translateY(-2px)}
+.btn-apply svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+/* Demo hint box */
+.demo-box{background:linear-gradient(135deg,#FFF8F4,#FFF3EC);border:1px solid rgba(255,107,53,.15);border-radius:12px;padding:1rem 1.25rem;margin-top:1.25rem}
+.demo-box-title{font-size:.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+.demo-box-title svg{width:13px;height:13px;stroke:var(--orange);fill:none;stroke-width:2;stroke-linecap:round}
+.demo-row{display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-sec);padding:.2rem 0;border-bottom:1px dashed rgba(255,107,53,.1)}
+.demo-row:last-child{border-bottom:none}
+.demo-val{font-weight:700;color:var(--text);font-family:monospace}
+.rp-footer{margin-top:2rem;font-size:.75rem;color:var(--text-sec);text-align:center}
+.rp-footer a{color:var(--orange);font-weight:600;text-decoration:none}
+
+/* Responsive */
+@media(max-width:900px){
+  body{grid-template-columns:1fr}
+  .left-panel{display:none}
+  .right-panel{padding:2.5rem 2rem}
+}
+@media(max-width:480px){.right-panel{padding:2rem 1.25rem}}
+</style>
+</head>
+<body>
+
+<!-- ── LEFT PANEL ── -->
+<div class="left-panel">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- Floating Info Cards -->
+  <div class="lp-card lp-card-1">
+    <div class="lp-ic lp-ic-o"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+    <div><div class="lp-card-title">100% Pass Rate</div><div class="lp-card-sub">Board Exams 2024</div></div>
+  </div>
+  <div class="lp-card lp-card-2">
+    <div class="lp-ic lp-ic-t"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+    <div><div class="lp-card-title">1,238 Students</div><div class="lp-card-sub">Session 2024–25</div></div>
+  </div>
+  <div class="lp-card lp-card-3">
+    <div class="lp-ic lp-ic-e"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+    <div><div class="lp-card-title">Est. 1953</div><div class="lp-card-sub">73 Years of Excellence</div></div>
+  </div>
+  <div class="lp-card lp-card-4">
+    <div class="lp-ic lp-ic-w"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div><div class="lp-card-title">Govt. Sponsored</div><div class="lp-card-sub">UDISE: 19030809101</div></div>
+  </div>
+
+  <div class="lp-inner">
+    <!-- Logo -->
+    <a href="index.html" class="lp-logo">
+      <img src="images/nakkatischool_logo.png" style="width:48px;height:48px;border-radius:50%;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,.15);flex-shrink:0" alt="Logo">
+      <div><div class="lp-logo-text">Nakkati Pushnadanga H.S.</div><div class="lp-logo-sub">Student Portal</div></div>
+    </a>
+
+    <!-- Animated Illustration -->
+    <div class="lp-illustration">
+      <svg class="illus-svg" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background Card -->
+        <rect x="20" y="30" width="280" height="200" rx="20" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+        <!-- School building -->
+        <rect x="110" y="110" width="100" height="90" rx="4" fill="rgba(255,107,53,0.2)" stroke="rgba(255,107,53,0.5)" stroke-width="1.5"/>
+        <polygon points="110,110 160,70 210,110" fill="rgba(255,107,53,0.3)" stroke="rgba(255,107,53,0.6)" stroke-width="1.5"/>
+        <!-- Door -->
+        <rect x="145" y="155" width="30" height="45" rx="4" fill="rgba(255,107,53,0.5)"/>
+        <!-- Windows -->
+        <rect x="120" y="125" width="22" height="18" rx="3" fill="rgba(46,196,182,0.4)" stroke="rgba(46,196,182,0.6)" stroke-width="1"/>
+        <rect x="178" y="125" width="22" height="18" rx="3" fill="rgba(46,196,182,0.4)" stroke="rgba(46,196,182,0.6)" stroke-width="1"/>
+        <!-- Flag -->
+        <line x1="160" y1="70" x2="160" y2="45" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+        <polygon points="160,45 180,52 160,59" fill="rgba(255,107,53,0.7)"/>
+        <!-- Ground -->
+        <rect x="60" y="200" width="200" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+        <!-- Trees -->
+        <ellipse cx="80" cy="185" rx="18" ry="22" fill="rgba(5,150,105,0.3)" stroke="rgba(5,150,105,0.5)" stroke-width="1"/>
+        <rect x="77" y="195" width="6" height="15" fill="rgba(5,150,105,0.4)"/>
+        <ellipse cx="240" cy="182" rx="16" ry="20" fill="rgba(5,150,105,0.3)" stroke="rgba(5,150,105,0.5)" stroke-width="1"/>
+        <rect x="237" y="193" width="6" height="17" fill="rgba(5,150,105,0.4)"/>
+        <!-- Stars/sparkles -->
+        <circle cx="55" cy="60" r="3" fill="rgba(255,107,53,0.6)">
+          <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="270" cy="80" r="2.5" fill="rgba(46,196,182,0.6)">
+          <animate attributeName="opacity" values="1;0.3;1" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="45" cy="150" r="2" fill="rgba(255,255,255,0.4)">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="285" cy="140" r="2.5" fill="rgba(255,107,53,0.5)">
+          <animate attributeName="opacity" values="1;0.4;1" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Student icon -->
+        <circle cx="160" cy="152" r="8" fill="rgba(255,255,255,0.9)"/>
+        <path d="M152 162c0-4 3-6 8-6s8 2 8 6" stroke="rgba(255,107,53,0.8)" stroke-width="1.5" fill="rgba(255,255,255,0.8)"/>
+      </svg>
+    </div>
+
+    <h2 class="lp-headline">Welcome to<br>Your <span>Student Portal</span></h2>
+    <p class="lp-desc">Access your results, subjects, roll number and all academic information — anytime, anywhere.</p>
+
+    <div class="lp-stats">
+      <div class="lp-stat"><div class="lp-stat-num">73<span>+</span></div><div class="lp-stat-lbl">Years</div></div>
+      <div class="lp-divider"></div>
+      <div class="lp-stat"><div class="lp-stat-num">1.2<span>k</span></div><div class="lp-stat-lbl">Students</div></div>
+      <div class="lp-divider"></div>
+      <div class="lp-stat"><div class="lp-stat-num">29<span>+</span></div><div class="lp-stat-lbl">Faculty</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RIGHT PANEL ── -->
+<div class="right-panel">
+  <a href="index.html" class="rp-back">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+
+  <div class="rp-eyebrow">
+    <span class="rp-eyebrow-dot"></span>
+    Student Portal
+  </div>
+
+  <h1 class="rp-title">Login to Your<br>Account</h1>
+  <p class="rp-sub">Enter your Roll Number and Date of Birth to access your student dashboard.</p>
+
+  <!-- Error -->
+  <div class="error-box" id="loginError">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    Invalid Roll Number or Password. Please check and try again.
+  </div>
+
+  <!-- Form -->
+  <div class="form-group">
+    <label class="form-label">Roll Number <span>*</span></label>
+    <div class="input-wrap">
+      <span class="input-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <input class="form-input" id="rollInput" type="text" placeholder="e.g. 1001" autocomplete="off">
+    </div>
+    <div class="form-hint">Your Roll Number as assigned by the school</div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Password <span>*</span></label>
+    <div class="input-wrap">
+      <span class="input-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
+      <input class="form-input" id="passInput" type="password" placeholder="Date of Birth (DDMMYYYY)">
+      <button class="pass-toggle" id="togglePass" type="button" onclick="togglePassword()">
+        <svg id="eyeIcon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+    </div>
+    <div class="form-hint">Password = your Date of Birth — format DDMMYYYY (e.g. 15082010)</div>
+  </div>
+
+  <button class="btn-submit" id="loginBtn" onclick="doLogin()">
+    <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><path d="M10 14L21 3"/><path d="M21 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6"/></svg>
+    Login to Portal
+  </button>
+
+  <div class="divider-text">OR</div>
+
+  <button class="btn-apply" onclick="window.location.href='student-apply.html'">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    Apply for Admission
+  </button>
+
+  <!-- Demo Credentials -->
+  <div class="demo-box">
+    <div class="demo-box-title">
+      <svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+      Demo Credentials
+    </div>
+    <div class="demo-row"><span>Roll 1001 (Ananya Biswas – Class IX)</span><span class="demo-val">15082010</span></div>
+    <div class="demo-row"><span>Roll 1002 (Raju Sarkar – Class X)</span><span class="demo-val">22032009</span></div>
+    <div class="demo-row"><span>Roll 1003 (Priya Das – Class VIII)</span><span class="demo-val">05112011</span></div>
+  </div>
+
+  <div class="rp-footer">
+    Need help? Contact school office: <a href="tel:+919876543210">+91 98765-43210</a> · <a href="index.html">Return to Homepage</a>
+  </div>
+</div>
+
+<script>
+// Student database (same as main site)
+const STUDENTS = {
+  '1001':{name:'Ananya Biswas',dob:'15/08/2010',father:'Ranjit Biswas',mobile:'98765-43210',addr:'Nakkati, Cooch Behar',cls:'Class IX',section:'A',roll:'1001',subjects:['Bengali','English','Mathematics','Physical Science','Life Science','History','Geography'],results:[{sub:'Bengali',full:100,obt:82,grade:'B'},{sub:'English',full:100,obt:76,grade:'B'},{sub:'Mathematics',full:100,obt:91,grade:'A'},{sub:'Physical Science',full:100,obt:88,grade:'A'},{sub:'Life Science',full:100,obt:85,grade:'A'},{sub:'History',full:100,obt:79,grade:'B'},{sub:'Geography',full:100,obt:83,grade:'A'}]},
+  '1002':{name:'Raju Sarkar',dob:'22/03/2009',father:'Tapan Sarkar',mobile:'97650-12340',addr:'Pushnadanga, Cooch Behar',cls:'Class X',section:'B',roll:'1002',subjects:['Bengali','English','Mathematics','Physical Science','Life Science','History','Geography'],results:[{sub:'Bengali',full:100,obt:74,grade:'B'},{sub:'English',full:100,obt:68,grade:'B'},{sub:'Mathematics',full:100,obt:79,grade:'B'},{sub:'Physical Science',full:100,obt:71,grade:'B'},{sub:'Life Science',full:100,obt:77,grade:'B'},{sub:'History',full:100,obt:65,grade:'C'},{sub:'Geography',full:100,obt:80,grade:'A'}]},
+  '1003':{name:'Priya Das',dob:'05/11/2011',father:'Subal Das',mobile:'90123-45678',addr:'Haribhanga, Cooch Behar',cls:'Class VIII',section:'A',roll:'1003',subjects:['Bengali','English','Mathematics','Science','Social Studies','Sanskrit'],results:[{sub:'Bengali',full:100,obt:93,grade:'A'},{sub:'English',full:100,obt:87,grade:'A'},{sub:'Mathematics',full:100,obt:95,grade:'A'},{sub:'Science',full:100,obt:90,grade:'A'},{sub:'Social Studies',full:100,obt:88,grade:'A'},{sub:'Sanskrit',full:100,obt:80,grade:'A'}]}
+};
+
+function togglePassword(){
+  const input = document.getElementById('passInput');
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+function doLogin(){
+  const roll = document.getElementById('rollInput').value.trim();
+  let student = STUDENTS[roll];
+  const errBox = document.getElementById('loginError');
+  errBox.style.display = 'none';
+  if(!student){ student = STUDENTS['1001']; } // Dummy fallback
+  // Save to sessionStorage and redirect to dashboard
+  sessionStorage.setItem('loggedStudent', JSON.stringify(student));
+  window.location.href = 'student-dashboard.html';
+}
+
+// Enter key support
+document.addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nakkati Pushnadanga High School (H.S.) | Est. 1953 · Cooch Behar</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Core palette */
+  --navy:#0B1D3A;
+  --navy-mid:#132c57;
+  --blue:#1E40AF;
+  --blue-mid:#2563EB;
+  --blue-light:#DBEAFE;
+  --blue-pale:#EFF6FF;
+  /* Accent palette */
+  --saffron:#E8930A;
+  --saffron-bright:#F59E0B;
+  --saffron-light:#FEF3C7;
+  --saffron-pale:#FFFBEB;
+  --emerald:#047857;
+  --emerald-mid:#059669;
+  --emerald-light:#D1FAE5;
+  --purple:#6D28D9;
+  --purple-light:#EDE9FE;
+  --coral:#DC2626;
+  --coral-light:#FEE2E2;
+  --rose:#DB2777;
+  --teal:#0D9488;
+  /* Neutrals */
+  --white:#FFFFFF;
+  --cream:#FFFBF5;
+  --gray-50:#F8FAFC;
+  --gray-100:#F1F5F9;
+  --gray-200:#E2E8F0;
+  --gray-400:#94A3B8;
+  --gray-500:#64748B;
+  --gray-700:#334155;
+  --gray-900:#0F172A;
+  --text:#0F172A;
+  --text-sec:#475569;
+  /* Design tokens */
+  --r-sm:8px;
+  --r-md:14px;
+  --r-lg:20px;
+  --r-xl:28px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.12),0 4px 12px rgba(0,0,0,.06);
+  --shadow-blue:0 8px 30px rgba(30,64,175,.25);
+  --t:all .3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f1f1f1}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:10px}
+
+/* ── NAVBAR ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;transition:var(--t)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem;height:76px;display:flex;align-items:center;justify-content:space-between}
+nav.at-top{background:transparent}
+nav.scrolled{background:rgba(11,29,58,.97);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-logo-wrap{width:48px;height:48px;background:linear-gradient(135deg,var(--saffron),#F97316);border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(232,147,10,.4);flex-shrink:0}
+.nav-logo-wrap svg{width:26px;height:26px;fill:white}
+.nav-brand-text .name{font-family:'Merriweather',serif;font-size:13.5px;font-weight:700;color:white;line-height:1.2;letter-spacing:-.01em}
+.nav-brand-text .sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em}
+.nav-links{display:flex;align-items:center;gap:1.75rem}
+.nav-links a{font-size:13px;font-weight:500;color:rgba(255,255,255,.8);text-decoration:none;transition:color .2s;letter-spacing:.01em}
+.nav-links a:hover{color:var(--saffron-bright)}
+.nav-cta-btn{background:linear-gradient(135deg,var(--saffron),#F97316);color:white!important;padding:9px 22px;border-radius:9px;font-size:12.5px!important;font-weight:700!important;letter-spacing:.02em;box-shadow:0 4px 14px rgba(232,147,10,.35);transition:var(--t)!important}
+.nav-cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,147,10,.45)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:white;border-radius:2px;transition:var(--t)}
+.mob-menu{display:none;position:fixed;top:76px;left:0;right:0;background:rgba(11,29,58,.98);backdrop-filter:blur(16px);padding:1.5rem 2rem;z-index:998;flex-direction:column;gap:.75rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.mob-menu a{font-size:15px;font-weight:500;color:rgba(255,255,255,.8);text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.07);transition:color .2s}
+.mob-menu a:hover{color:var(--saffron-bright)}
+.mob-menu.open{display:flex}
+
+/* ── HERO ── */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center top;z-index:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,18,35,.92) 0%,rgba(11,29,58,.85) 40%,rgba(30,64,175,.65) 100%);z-index:1}
+.hero-overlay-2{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(232,147,10,.12) 0%,transparent 60%);z-index:2}
+.hero-content{position:relative;z-index:3;text-align:center;padding:0 2rem;max-width:900px}
+.hero-pill{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);color:rgba(255,255,255,.9);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;padding:8px 20px;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;animation:slideUp .7s ease both}
+.hero-pill-dot{width:8px;height:8px;background:var(--saffron-bright);border-radius:50%;animation:pulse 2s infinite;box-shadow:0 0 8px var(--saffron-bright)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+h1.hero-h1{font-family:'Merriweather',serif;font-size:clamp(2.6rem,5.5vw,4.5rem);font-weight:900;line-height:1.08;color:white;margin-bottom:.6rem;letter-spacing:-.02em;animation:slideUp .7s .1s ease both}
+h1.hero-h1 .highlight{background:linear-gradient(90deg,var(--saffron-bright),#F97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-tagline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1rem,2.5vw,1.3rem);font-weight:600;letter-spacing:.12em;color:var(--saffron-bright);text-transform:uppercase;margin-bottom:1.25rem;animation:slideUp .7s .15s ease both}
+.hero-sub{font-size:clamp(.95rem,1.8vw,1.1rem);color:rgba(255,255,255,.75);max-width:650px;margin:0 auto 2.5rem;line-height:1.8;animation:slideUp .7s .2s ease both}
+.hero-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;animation:slideUp .7s .3s ease both}
+.btn-hero-primary{background:linear-gradient(135deg,var(--saffron),#F97316);color:white;padding:15px 34px;border-radius:12px;font-size:1rem;font-weight:700;text-decoration:none;transition:var(--t);box-shadow:0 6px 24px rgba(232,147,10,.4);letter-spacing:.01em}
+.btn-hero-primary:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(232,147,10,.5)}
+.btn-hero-outline{background:rgba(255,255,255,.1);color:white;padding:14px 34px;border-radius:12px;font-size:1rem;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,.3);transition:var(--t);backdrop-filter:blur(8px)}
+.btn-hero-outline:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);transform:translateY(-3px)}
+.hero-scroll-ind{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeIn 1s .8s ease both}
+.hero-scroll-ind span{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em}
+.scroll-mouse{width:22px;height:34px;border:1.5px solid rgba(255,255,255,.35);border-radius:12px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px}
+.scroll-mouse::after{content:'';width:3px;height:7px;background:var(--saffron-bright);border-radius:2px;animation:scrollBob 1.5s infinite}
+@keyframes scrollBob{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(10px)}}
+.hero-bottom-bar{position:absolute;bottom:0;left:0;right:0;z-index:3;background:rgba(255,255,255,.06);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.1);padding:.9rem 2.5rem}
+.hero-bottom-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;justify-content:center}
+.hb-item{display:flex;align-items:center;gap:.6rem}
+.hb-item svg{width:16px;height:16px;stroke:var(--saffron-bright);fill:none;stroke-width:2;flex-shrink:0}
+.hb-item span{font-size:.78rem;color:rgba(255,255,255,.7);font-weight:500}
+
+/* ── STATS ── */
+.stats-band{background:linear-gradient(135deg,var(--navy) 0%,#1a3570 50%,#1e2f6b 100%);padding:3.5rem 2.5rem;position:relative;overflow:hidden}
+.stats-band::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(232,147,10,.12) 0%,transparent 70%);pointer-events:none}
+.stats-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;position:relative}
+.stat-cell{text-align:center;padding:1.5rem 2rem;position:relative}
+.stat-cell:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:rgba(255,255,255,.12)}
+.stat-icon-wrap{width:44px;height:44px;margin:0 auto .75rem;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.stat-icon-wrap svg{width:22px;height:22px;stroke:white;fill:none;stroke-width:2}
+.s-blue{background:rgba(37,99,235,.35)}
+.s-saffron{background:rgba(245,158,11,.3)}
+.s-emerald{background:rgba(5,150,105,.3)}
+.s-purple{background:rgba(109,40,217,.3)}
+.s-coral{background:rgba(220,38,38,.3)}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:800;color:white;line-height:1;letter-spacing:-.02em;display:block}
+.stat-lbl{font-size:.73rem;color:rgba(255,255,255,.55);font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;display:block}
+
+/* ── SECTION BASE ── */
+.sec{padding:6rem 2.5rem}
+.sec-inner{max-width:1280px;margin:0 auto}
+.eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;margin-bottom:1rem}
+.eyebrow::before{content:'';width:24px;height:3px;border-radius:2px}
+.eyebrow-blue{color:var(--blue-mid)} .eyebrow-blue::before{background:var(--blue-mid)}
+.eyebrow-saffron{color:var(--saffron)} .eyebrow-saffron::before{background:var(--saffron)}
+.eyebrow-emerald{color:var(--emerald-mid)} .eyebrow-emerald::before{background:var(--emerald-mid)}
+.eyebrow-purple{color:var(--purple)} .eyebrow-purple::before{background:var(--purple)}
+.eyebrow-coral{color:var(--coral)} .eyebrow-coral::before{background:var(--coral)}
+.eyebrow-white{color:rgba(255,255,255,.8)} .eyebrow-white::before{background:var(--saffron-bright)}
+h2.sec-title{font-family:'Merriweather',serif;font-size:clamp(1.9rem,3vw,2.75rem);font-weight:900;line-height:1.15;letter-spacing:-.02em;margin-bottom:1rem}
+h2.sec-title-white{color:white}
+.sec-desc{color:var(--text-sec);font-size:.95rem;line-height:1.85;max-width:580px}
+
+/* ── ABOUT ── */
+.about-sec{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:6rem;align-items:center;margin-top:4rem}
+.about-img-frame{position:relative}
+.about-img-main{width:100%;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/3;object-fit:cover;box-shadow:var(--shadow-lg)}
+.about-img-main img{width:100%;height:100%;object-fit:cover;display:block}
+.about-img-badge{position:absolute;bottom:-1.5rem;left:-1.5rem;background:linear-gradient(135deg,var(--saffron),#F97316);border-radius:16px;padding:1.25rem 1.5rem;box-shadow:0 10px 30px rgba(232,147,10,.4);color:white;min-width:160px}
+.aib-num{font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:800;line-height:1;display:block}
+.aib-lbl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.85;margin-top:.2rem;display:block}
+.about-img-badge2{position:absolute;top:-1.25rem;right:-1.25rem;background:var(--emerald-mid);border-radius:16px;padding:1rem 1.25rem;box-shadow:0 8px 24px rgba(5,150,105,.4);color:white}
+.about-deco-ring{position:absolute;bottom:-3rem;right:-3rem;width:200px;height:200px;border-radius:50%;border:2px dashed rgba(30,64,175,.2);z-index:-1}
+.about-features{margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem}
+.feat-item{display:flex;align-items:flex-start;gap:1.25rem;padding:1.25rem;background:var(--gray-50);border-radius:var(--r-md);border:1px solid var(--gray-200);transition:var(--t)}
+.feat-item:hover{background:var(--blue-pale);border-color:rgba(37,99,235,.2);transform:translateX(4px)}
+.feat-ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feat-ic svg{width:22px;height:22px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ic-blue{background:var(--blue-light)} .ic-blue svg{stroke:var(--blue-mid)}
+.ic-emerald{background:var(--emerald-light)} .ic-emerald svg{stroke:var(--emerald-mid)}
+.ic-saffron{background:var(--saffron-light)} .ic-saffron svg{stroke:var(--saffron)}
+.feat-text h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.feat-text p{font-size:.82rem;color:var(--text-sec);line-height:1.65}
+
+/* ── HISTORY ── */
+.history-sec{background:var(--navy);position:relative;overflow:hidden}
+.history-sec::before{content:'';position:absolute;top:-20%;right:-15%;width:600px;height:600px;background:radial-gradient(circle,rgba(232,147,10,.08) 0%,transparent 70%);pointer-events:none}
+.history-sec::after{content:'';position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(37,99,235,.1) 0%,transparent 70%);pointer-events:none}
+.history-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:4rem;position:relative;z-index:1}
+.history-copy p{color:rgba(255,255,255,.65);font-size:.93rem;line-height:1.85;margin-bottom:1.1rem}
+.history-copy p strong{color:var(--saffron-bright)}
+.history-img{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:16/10;margin-top:2rem}
+.history-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.85) saturate(1.1)}
+.tl-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-xl);padding:2rem;backdrop-filter:blur(6px)}
+.tl-card h3{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:var(--saffron-bright);text-transform:uppercase;letter-spacing:.14em;margin-bottom:1.5rem}
+.timeline-v{display:flex;flex-direction:column;gap:0}
+.tl-row{display:flex;gap:1.25rem;padding:1.5rem 0;position:relative}
+.tl-row:not(:last-child)::after{content:'';position:absolute;left:18px;top:54px;bottom:0;width:1px;background:rgba(255,255,255,.1)}
+.tl-ball{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800}
+.ball-saffron{background:rgba(245,158,11,.2);border:2px solid var(--saffron-bright);color:var(--saffron-bright)}
+.ball-blue{background:rgba(37,99,235,.2);border:2px solid var(--blue-mid);color:var(--blue-mid)}
+.ball-emerald{background:rgba(5,150,105,.2);border:2px solid var(--emerald-mid);color:var(--emerald-mid)}
+.ball-purple{background:rgba(109,40,217,.2);border:2px solid #8B5CF6;color:#8B5CF6}
+.tl-yr{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem}
+.tl-head{font-size:.9rem;font-weight:700;color:white;margin-bottom:.2rem}
+.tl-desc{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.65}
+
+/* ── ACADEMICS ── */
+.academics-sec{background:var(--cream)}
+.streams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:3.5rem}
+.stream-card{border-radius:var(--r-lg);padding:2rem;position:relative;overflow:hidden;transition:var(--t);cursor:default}
+.stream-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.sc-blue{background:linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%);border:1px solid rgba(37,99,235,.15)}
+.sc-emerald{background:linear-gradient(135deg,#F0FDF4 0%,#D1FAE5 100%);border:1px solid rgba(5,150,105,.15)}
+.sc-saffron{background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 100%);border:1px solid rgba(245,158,11,.2)}
+.sc-purple{background:linear-gradient(135deg,#F5F3FF 0%,#EDE9FE 100%);border:1px solid rgba(109,40,217,.15)}
+.sc-coral{background:linear-gradient(135deg,#FFF5F5 0%,#FEE2E2 100%);border:1px solid rgba(220,38,38,.15)}
+.sc-teal{background:linear-gradient(135deg,#F0FDFA 0%,#CCFBF1 100%);border:1px solid rgba(13,148,136,.15)}
+.stream-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.5rem;position:relative}
+.si-blue{background:var(--blue-mid)}
+.si-emerald{background:var(--emerald-mid)}
+.si-saffron{background:var(--saffron)}
+.si-purple{background:var(--purple)}
+.si-coral{background:var(--coral)}
+.si-teal{background:var(--teal)}
+.stream-icon svg{width:28px;height:28px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stream-card h3{font-family:'Merriweather',serif;font-size:1.05rem;font-weight:700;margin-bottom:.6rem}
+.tc-blue h3{color:var(--blue)} .tc-emerald h3{color:var(--emerald)} .tc-saffron h3{color:#92400E} .tc-purple h3{color:var(--purple)} .tc-coral h3{color:var(--coral)} .tc-teal h3{color:var(--teal)}
+.stream-card p{font-size:.83rem;color:var(--text-sec);line-height:1.7;margin-bottom:1rem}
+.stream-tag{display:inline-flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:100px}
+.tag-blue{background:var(--blue-light);color:var(--blue)}
+.tag-emerald{background:var(--emerald-light);color:var(--emerald)}
+.tag-saffron{background:var(--saffron-light);color:#92400E}
+.tag-purple{background:var(--purple-light);color:var(--purple)}
+.tag-coral{background:var(--coral-light);color:var(--coral)}
+.tag-teal{background:#CCFBF1;color:var(--teal)}
+.sc-deco{position:absolute;bottom:-20px;right:-20px;width:100px;height:100px;border-radius:50%;opacity:.15}
+
+/* ── NOTICES ── */
+.notices-sec{background:var(--white)}
+.notices-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:3.5rem;margin-top:3.5rem;align-items:start}
+.notice-board{background:var(--white);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-md);border:1px solid var(--gray-200)}
+.nb-head{background:linear-gradient(135deg,var(--blue) 0%,#1E3A8A 100%);padding:1.5rem 1.75rem;display:flex;align-items:center;justify-content:space-between}
+.nb-head h3{color:white;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:.5rem}
+.live-chip{background:rgba(255,255,255,.15);color:white;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;padding:4px 12px;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2)}
+.notice-ul{list-style:none}
+.n-item{padding:1.1rem 1.75rem;border-bottom:1px solid var(--gray-100);display:flex;align-items:flex-start;gap:1rem;transition:background .2s;cursor:default}
+.n-item:last-child{border-bottom:none}
+.n-item:hover{background:var(--blue-pale)}
+.n-dot-wrap{width:10px;height:10px;flex-shrink:0;margin-top:6px}
+.n-dot{width:10px;height:10px;border-radius:50%}
+.nd-gold{background:var(--saffron-bright)}
+.nd-blue{background:var(--blue-mid)}
+.nd-green{background:var(--emerald-mid)}
+.n-meta{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-400);margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem}
+.n-tag-imp{background:rgba(220,38,38,.1);color:var(--coral);padding:1px 6px;border-radius:4px;font-size:9px}
+.n-tag-new{background:rgba(5,150,105,.1);color:var(--emerald-mid);padding:1px 6px;border-radius:4px;font-size:9px}
+.n-title{font-size:.87rem;color:var(--text);font-weight:500;line-height:1.6}
+.info-stack{display:flex;flex-direction:column;gap:1.25rem}
+.info-c{background:var(--gray-50);border-radius:var(--r-md);padding:1.25rem 1.4rem;border:1px solid var(--gray-200);transition:var(--t)}
+.info-c:hover{border-color:rgba(37,99,235,.2);background:var(--blue-pale)}
+.ic-hd{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem}
+.ic-hd-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center}
+.ic-hd-icon svg{width:16px;height:16px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.i-b{background:var(--blue-light)} .i-b svg{stroke:var(--blue-mid)}
+.i-s{background:var(--saffron-light)} .i-s svg{stroke:var(--saffron)}
+.i-e{background:var(--emerald-light)} .i-e svg{stroke:var(--emerald-mid)}
+.i-p{background:var(--purple-light)} .i-p svg{stroke:var(--purple)}
+.ic-hd h4{font-size:.88rem;font-weight:700;color:var(--text)}
+.info-c p{font-size:.82rem;color:var(--text-sec);line-height:1.7}
+
+/* ── GALLERY ── */
+.gallery-sec{background:var(--navy);position:relative;overflow:hidden}
+.gallery-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(232,147,10,.06) 0%,transparent 60%);pointer-events:none}
+.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:280px 280px;gap:1rem;margin-top:3.5rem;position:relative;z-index:1}
+.g-item{border-radius:var(--r-lg);overflow:hidden;position:relative;cursor:pointer;transition:var(--t)}
+.g-item:hover{transform:scale(1.02);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.g-item:hover img{transform:scale(1.08)}
+.g-item:nth-child(1){grid-column:1/6;grid-row:1/2}
+.g-item:nth-child(2){grid-column:6/9;grid-row:1/2}
+.g-item:nth-child(3){grid-column:9/13;grid-row:1/3}
+.g-item:nth-child(4){grid-column:1/4;grid-row:2/3}
+.g-item:nth-child(5){grid-column:4/9;grid-row:2/3}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,18,35,.75) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem}
+.g-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:white}
+.g-sub{font-size:.72rem;color:rgba(255,255,255,.6);margin-top:.15rem}
+
+/* ── CONTACT ── */
+.contact-sec{background:linear-gradient(180deg,var(--gray-50) 0%,white 100%)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3.5rem;align-items:start}
+.c-cards{display:flex;flex-direction:column;gap:1.1rem}
+.c-card{display:flex;align-items:flex-start;gap:1.1rem;padding:1.25rem 1.4rem;background:var(--white);border-radius:var(--r-md);border:1px solid var(--gray-200);box-shadow:var(--shadow-sm);transition:var(--t)}
+.c-card:hover{border-color:rgba(37,99,235,.25);box-shadow:var(--shadow-blue);transform:translateX(4px)}
+.c-ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-ic svg{width:22px;height:22px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.c-card h4{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.c-card p{font-size:.82rem;color:var(--text-sec);line-height:1.7}
+.map-wrapper{position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:0 0 0 3px rgba(37,99,235,.15),var(--shadow-lg);transition:var(--t)}
+.map-wrapper:hover{box-shadow:0 0 0 4px rgba(37,99,235,.28),0 20px 60px rgba(0,0,0,.18)}
+.map-header{background:linear-gradient(135deg,var(--blue) 0%,#6D28D9 100%);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.map-header-left{display:flex;align-items:center;gap:.75rem}
+.map-pin-icon{width:36px;height:36px;background:rgba(255,255,255,.18);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.map-pin-icon svg{width:18px;height:18px;stroke:white;fill:none;stroke-width:2}
+.map-header-title{font-size:.9rem;font-weight:700;color:white;line-height:1.3}
+.map-header-sub{font-size:.72rem;color:rgba(255,255,255,.7);margin-top:.1rem}
+.map-live-dot{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;padding:5px 12px;border-radius:100px;letter-spacing:.1em;text-transform:uppercase}
+.map-live-dot::before{content:'';width:7px;height:7px;background:#4ade80;border-radius:50%;box-shadow:0 0 6px #4ade80;animation:pulse 1.8s infinite}
+.map-embed-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+.map-embed-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block}
+.map-footer{background:linear-gradient(135deg,var(--blue-pale),#EDE9FE);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid rgba(37,99,235,.1)}
+.map-footer-info{font-size:.78rem;color:var(--text-sec);line-height:1.55}
+.map-footer-info strong{color:var(--blue);display:block;font-size:.82rem;margin-bottom:.1rem}
+.map-btn{background:linear-gradient(135deg,var(--blue-mid),#6D28D9);color:white;padding:9px 20px;border-radius:9px;text-decoration:none;font-size:.8rem;font-weight:700;transition:var(--t);box-shadow:0 4px 14px rgba(37,99,235,.35);white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.map-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.45)}
+.map-btn svg{width:14px;height:14px;stroke:white;fill:none;stroke-width:2.5}
+.how-to-reach{margin-top:1.5rem;background:linear-gradient(135deg,var(--blue-pale),var(--blue-light));border-radius:var(--r-md);padding:1.5rem;border:1px solid rgba(37,99,235,.12)}
+.htr-title{font-size:.88rem;font-weight:700;color:var(--blue);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.htr-title svg{width:16px;height:16px;stroke:var(--blue);fill:none;stroke-width:2}
+.htr-item{font-size:.82rem;color:var(--text-sec);line-height:1.75}
+.htr-item strong{color:var(--text)}
+
+/* ── FOOTER ── */
+footer{background:var(--gray-900);color:rgba(255,255,255,.6);padding:5rem 2.5rem 2rem}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.footer-logo-block{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
+.footer-logo-ic{width:48px;height:48px;background:linear-gradient(135deg,var(--saffron),#F97316);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(232,147,10,.35)}
+.footer-logo-ic svg{width:26px;height:26px;fill:white}
+.footer-brand-name{font-family:'Merriweather',serif;font-size:.95rem;font-weight:700;color:white;line-height:1.3}
+.footer-brand-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-top:.15rem}
+.footer-about{font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.45);max-width:300px}
+.footer-socials{display:flex;align-items:center;gap:.75rem;margin-top:1.5rem}
+.social-btn{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;transition:var(--t);cursor:pointer}
+.social-btn:hover{background:var(--saffron);border-color:var(--saffron)}
+.social-btn svg{width:15px;height:15px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:2}
+.social-btn:hover svg{stroke:white}
+.footer-col h4{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1.25rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.footer-col a{font-size:.82rem;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:.5rem}
+.footer-col a:hover{color:var(--saffron-bright)}
+.footer-col a::before{content:'›';color:rgba(255,255,255,.2);font-size:.9rem;transition:color .2s}
+.footer-col a:hover::before{color:var(--saffron)}
+.footer-bottom{padding-top:2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-bottom span{font-size:.76rem;color:rgba(255,255,255,.3)}
+.footer-bottom a{color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.footer-bottom a:hover{color:var(--saffron-bright)}
+.udise-badge{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:4px 14px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;color:rgba(255,255,255,.4)}
+
+/* ── DIVIDERS ── */
+.wave-div{display:block;width:100%;line-height:0;position:relative}
+.wave-div svg{display:block;width:100%}
+
+/* ── ANIMATIONS ── */
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.rv1{transition-delay:.08s}.rv2{transition-delay:.16s}.rv3{transition-delay:.24s}.rv4{transition-delay:.32s}.rv5{transition-delay:.40s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .history-grid{grid-template-columns:1fr;gap:3rem}
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:220px 220px 220px;gap:1rem}
+  .g-item:nth-child(1){grid-column:1/2;grid-row:1/2}
+  .g-item:nth-child(2){grid-column:2/3;grid-row:1/2}
+  .g-item:nth-child(3){grid-column:1/3;grid-row:2/3}
+  .g-item:nth-child(4){grid-column:1/2;grid-row:3/4}
+  .g-item:nth-child(5){grid-column:2/3;grid-row:3/4}
+  .notices-layout{grid-template-columns:1fr;gap:2.5rem}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-bottom-bar{display:none}
+  .stat-cell:not(:last-child)::after{display:none}
+  .about-img-badge,.about-img-badge2,.about-deco-ring{display:none}
+  .footer-top{grid-template-columns:1fr}
+  .streams-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .g-item{height:220px;grid-column:auto!important;grid-row:auto!important}
+  .hero-btns{flex-direction:column;width:100%}
+  .btn-hero-primary,.btn-hero-outline{width:100%;text-align:center}
+  .sec{padding:4rem 1.5rem}
+}
+@media(max-width:480px){
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+
+/* ── PRINT ── */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="mainNav" class="at-top">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <div class="nav-logo-wrap">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="nav-brand-text">
+        <div class="name">Nakkati Pushnadanga H.S.</div>
+        <div class="sub">Est. 1953 · Cooch Behar, West Bengal</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#history">History</a>
+      <a href="#academics">Academics</a>
+      <a href="#notices">Notices</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact" class="nav-cta-btn">Contact Us</a>
+    </div>
+    <div class="hamburger" id="burger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mob-menu" id="mobNav">
+  <a href="#about" onclick="toggleNav()">About</a>
+  <a href="#history" onclick="toggleNav()">History</a>
+  <a href="#academics" onclick="toggleNav()">Academics</a>
+  <a href="#notices" onclick="toggleNav()">Notices</a>
+  <a href="#gallery" onclick="toggleNav()">Gallery</a>
+  <a href="#contact" onclick="toggleNav()">Contact Us</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      WBBSE · WBCHSE · Govt. of West Bengal
+    </div>
+    <div class="hero-tagline">Established 1953 · Cooch Behar</div>
+    <h1 class="hero-h1">Nakkati Pushnadanga<br><span class="highlight">High School (H.S.)</span></h1>
+    <p class="hero-sub">Nurturing young minds with quality education, strong values, and academic excellence — serving Nakkati, Pushnadanga &amp; Haribhanga for over seven decades.</p>
+    <div class="hero-btns">
+      <a href="#about" class="btn-hero-primary">Explore Our School</a>
+      <a href="#notices" class="btn-hero-outline">View Notice Board</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-ind">
+    <span>Scroll Down</span>
+    <div class="scroll-mouse"></div>
+  </div>
+
+  <div class="hero-bottom-bar">
+    <div class="hero-bottom-inner">
+      <div class="hb-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Haribhanga, Cooch Behar-I Block, West Bengal — PIN 736134</span>
+      </div>
+      <div class="hb-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Session: January – December · Madhyamik &amp; Higher Secondary</span>
+      </div>
+      <div class="hb-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>UDISE Code: 19030809101 · Dept. of Education, WB Govt.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-cell">
+      <div class="stat-icon-wrap s-saffron">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <span class="stat-num" data-target="1953" data-year>1953</span>
+      <span class="stat-lbl">Year Founded</span>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-icon-wrap s-blue">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <span class="stat-num" data-target="1238" data-suffix="+">0</span>
+      <span class="stat-lbl">Students Enrolled</span>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-icon-wrap s-emerald">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <span class="stat-num" data-target="29">0</span>
+      <span class="stat-lbl">Dedicated Faculty</span>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-icon-wrap s-purple">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <span class="stat-num" data-target="100" data-suffix="%">0</span>
+      <span class="stat-lbl">Board Pass Rate</span>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-icon-wrap s-coral">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <span class="stat-num" data-target="8">0</span>
+      <span class="stat-lbl">Classes (V–XII)</span>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-icon-wrap s-blue">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      </div>
+      <span class="stat-num" data-target="70" data-suffix="+">0</span>
+      <span class="stat-lbl">Years of Excellence</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section class="about-sec sec" id="about">
+  <div class="sec-inner">
+    <div class="about-grid">
+      <div>
+        <div class="eyebrow eyebrow-blue reveal">About Our School</div>
+        <h2 class="sec-title reveal rv1">Shaping Futures for<br>Over Seven Decades</h2>
+        <p class="sec-desc reveal rv2">
+          Nakkati Pushnadanga High School is a co-educational, state-government institution nestled in Haribhanga village, Cooch Behar-I Block. Founded in 1953, it has been a transformative force for scheduled caste and minority communities across this region.
+        </p>
+        <p class="sec-desc reveal rv2" style="margin-top:1rem">
+          With Bengali as the primary medium and English as the secondary, we offer Classes V through XII — affiliated with both WBBSE for Madhyamik and WBCHSE for Higher Secondary examinations.
+        </p>
+        <div class="about-features">
+          <div class="feat-item reveal rv2">
+            <div class="feat-ic ic-blue">
+              <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="feat-text">
+              <h4>Higher Secondary Level (WBBSE &amp; WBCHSE)</h4>
+              <p>Fully affiliated with state boards. Comprehensive curriculum from Class V through Class XII across all streams.</p>
+            </div>
+          </div>
+          <div class="feat-item reveal rv3">
+            <div class="feat-ic ic-emerald">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="feat-text">
+              <h4>Co-Educational, Inclusive Community</h4>
+              <p>Welcoming boys and girls equally, fostering a diverse environment that upholds equality and opportunity for all.</p>
+            </div>
+          </div>
+          <div class="feat-item reveal rv4">
+            <div class="feat-ic ic-saffron">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="feat-text">
+              <h4>Government Sponsored</h4>
+              <p>Managed by the Dept. of Education, Govt. of West Bengal. UDISE Code: 19030809101.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image side -->
+      <div class="about-img-frame reveal rv2">
+        <div class="about-img-main">
+          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=900&q=80" alt="Students in a classroom learning" loading="lazy"/>
+        </div>
+        <div class="about-img-badge">
+          <span class="aib-num">100%</span>
+          <span class="aib-lbl">Board Pass Rate</span>
+        </div>
+        <div class="about-img-badge2">
+          <svg viewBox="0 0 24 24" width="22" height="22" style="stroke:white;fill:none;stroke-width:2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="about-deco-ring"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HISTORY (Dark) ─── -->
+<section class="history-sec sec" id="history">
+  <div class="sec-inner">
+    <div class="eyebrow eyebrow-white reveal">Our Legacy</div>
+    <h2 class="sec-title sec-title-white reveal rv1">A Journey of Seven Decades</h2>
+    <p class="reveal rv2" style="color:rgba(255,255,255,.6);font-size:.95rem;max-width:600px;line-height:1.85">From a remote village with no road access to a beacon of secondary education for the entire Cooch Behar region.</p>
+
+    <div class="history-grid">
+      <div>
+        <div class="history-copy reveal">
+          <p>In the early 1950s, the villages of <strong>Nakkati, Pushnadanga, and Haribhanga</strong> in Cooch Behar-I Block were isolated — home to scheduled caste and minority communities — with virtually no road infrastructure. Walking was the only mode of travel.</p>
+          <p>Students who wished to pursue secondary education faced a <strong>14-kilometre daily walk</strong> to Coochbehar Sadar or Dinhata sub-division — making secondary schooling almost inaccessible for the youth of these villages.</p>
+          <p>Recognising this critical educational gap, community leaders and visionary local educators joined forces in <strong>1953</strong> to establish Nakkati Pushnadanga High School — bringing quality education right to the doorstep of the community.</p>
+          <p>Today, the school stands as a thriving institution with <strong>over 1,238 students, 29 dedicated faculty</strong>, a library, and a 100% board examination pass rate — a testament to over seven decades of unwavering commitment.</p>
+        </div>
+        <div class="history-img reveal rv2">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" alt="Education and books" loading="lazy"/>
+        </div>
+      </div>
+
+      <div class="tl-card reveal rv3">
+        <h3>School Timeline</h3>
+        <div class="timeline-v">
+          <div class="tl-row">
+            <div class="tl-ball ball-saffron">50s</div>
+            <div>
+              <div class="tl-yr" style="color:rgba(245,158,11,.8)">1950s Context</div>
+              <div class="tl-head">No Road, No Access</div>
+              <div class="tl-desc">Villages had no road connectivity. Students walked 14 km daily — education was a privilege, not a right for the communities here.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-ball ball-saffron">1953</div>
+            <div>
+              <div class="tl-yr" style="color:rgba(245,158,11,.8)">1953</div>
+              <div class="tl-head">School Founded</div>
+              <div class="tl-desc">Community leaders and local educators established Nakkati Pushnadanga High School, bringing secondary education to the underprivileged communities of Cooch Behar-I.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-ball ball-blue">▲</div>
+            <div>
+              <div class="tl-yr" style="color:rgba(96,165,250,.9)">Growth Era</div>
+              <div class="tl-head">Expansion &amp; Affiliation</div>
+              <div class="tl-desc">Affiliated with WBBSE and later WBCHSE. Extended to Higher Secondary (H.S.) level, serving Classes V through XII across Arts and Science streams.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-ball ball-emerald">★</div>
+            <div>
+              <div class="tl-yr" style="color:rgba(52,211,153,.9)">Today</div>
+              <div class="tl-head">Centre of Excellence</div>
+              <div class="tl-desc">1,238+ students, 29 faculty, library, 100% pass rate. A proud pillar of education and opportunity in Cooch Behar district.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ACADEMICS ─── -->
+<section class="academics-sec sec" id="academics">
+  <div class="sec-inner">
+    <div class="eyebrow eyebrow-emerald reveal">What We Offer</div>
+    <h2 class="sec-title reveal rv1">Academic Programmes</h2>
+    <p class="sec-desc reveal rv2">Comprehensive education from Upper Primary through Higher Secondary — strong academic foundations in Arts, Science &amp; Commerce pathways.</p>
+
+    <div class="streams-grid">
+      <div class="stream-card sc-blue reveal">
+        <div class="stream-icon si-blue">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3 class="tc-blue">Upper Primary (V–VIII)</h3>
+        <p>Building a robust academic foundation through Bengali, English, Mathematics, Sciences &amp; Social Studies in an encouraging, nurturing environment.</p>
+        <span class="stream-tag tag-blue">Classes V – VIII</span>
+        <div class="sc-deco" style="background:var(--blue)"></div>
+      </div>
+      <div class="stream-card sc-emerald reveal rv1">
+        <div class="stream-icon si-emerald">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3 class="tc-emerald">Secondary (IX–X)</h3>
+        <p>WBBSE-affiliated Madhyamik preparation. Comprehensive study of core subjects with focused board examination excellence and career readiness.</p>
+        <span class="stream-tag tag-emerald">Classes IX – X · Madhyamik</span>
+        <div class="sc-deco" style="background:var(--emerald)"></div>
+      </div>
+      <div class="stream-card sc-saffron reveal rv2">
+        <div class="stream-icon si-saffron">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 class="tc-saffron">Science Stream (XI–XII)</h3>
+        <p>WBCHSE Higher Secondary with Physics, Chemistry, Biology, Mathematics &amp; Computer Science for students pursuing STEM careers.</p>
+        <span class="stream-tag tag-saffron">Classes XI – XII · H.S. Science</span>
+        <div class="sc-deco" style="background:var(--saffron)"></div>
+      </div>
+      <div class="stream-card sc-purple reveal rv3">
+        <div class="stream-icon si-purple">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3 class="tc-purple">Arts Stream (XI–XII)</h3>
+        <p>Humanities &amp; social sciences — Bengali Literature, History, Geography, Political Science &amp; Philosophy for creative and analytical minds.</p>
+        <span class="stream-tag tag-purple">Classes XI – XII · H.S. Arts</span>
+        <div class="sc-deco" style="background:var(--purple)"></div>
+      </div>
+      <div class="stream-card sc-teal reveal rv1">
+        <div class="stream-icon si-teal">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <h3 class="tc-teal">Library &amp; Resources</h3>
+        <p>A dedicated school library with 160+ volumes, reading materials, and reference resources supporting every student's academic journey.</p>
+        <span class="stream-tag tag-teal">Open to All Students</span>
+        <div class="sc-deco" style="background:var(--teal)"></div>
+      </div>
+      <div class="stream-card sc-coral reveal rv2">
+        <div class="stream-icon si-coral">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3 class="tc-coral">Co-Curricular Activities</h3>
+        <p>Sports, cultural programmes, annual examinations, and inter-school competitions that shape confident, well-rounded personalities and leaders.</p>
+        <span class="stream-tag tag-coral">Year-Round Activities</span>
+        <div class="sc-deco" style="background:var(--coral)"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NOTICES ─── -->
+<section class="notices-sec sec" id="notices">
+  <div class="sec-inner">
+    <div class="eyebrow eyebrow-saffron reveal">Stay Updated</div>
+    <h2 class="sec-title reveal rv1">Notice Board &amp; Information</h2>
+    <div class="notices-layout">
+      <!-- Notice Board -->
+      <div class="notice-board reveal">
+        <div class="nb-head">
+          <h3>📋 Latest Notices</h3>
+          <span class="live-chip">● Live</span>
+        </div>
+        <ul class="notice-ul">
+          <li class="n-item">
+            <div class="n-dot-wrap"><div class="n-dot nd-gold"></div></div>
+            <div>
+              <div class="n-meta">June 2026 <span class="n-tag-imp">Important</span></div>
+              <div class="n-title">Annual Examination schedule for Class X (Madhyamik) — report cards to be distributed in July 2026.</div>
+            </div>
+          </li>
+          <li class="n-item">
+            <div class="n-dot-wrap"><div class="n-dot nd-green"></div></div>
+            <div>
+              <div class="n-meta">June 2026 <span class="n-tag-new">New</span></div>
+              <div class="n-title">Higher Secondary (HS) Results 2026 announced. Students may collect marksheets from the school office.</div>
+            </div>
+          </li>
+          <li class="n-item">
+            <div class="n-dot-wrap"><div class="n-dot nd-blue"></div></div>
+            <div>
+              <div class="n-meta">May 2026</div>
+              <div class="n-title">New academic session 2026–27 admissions open for Classes V to XI. Contact office for eligibility details.</div>
+            </div>
+          </li>
+          <li class="n-item">
+            <div class="n-dot-wrap"><div class="n-dot nd-gold"></div></div>
+            <div>
+              <div class="n-meta">April 2026 <span class="n-tag-imp">Achievement</span></div>
+              <div class="n-title">School achieves 100% pass rate in Madhyamik 2026. Heartfelt congratulations to all students and faculty!</div>
+            </div>
+          </li>
+          <li class="n-item">
+            <div class="n-dot-wrap"><div class="n-dot nd-blue"></div></div>
+            <div>
+              <div class="n-meta">March 2026</div>
+              <div class="n-title">National Scholarship (Class VIII) — submit applications before deadline via Banglar Shiksha portal.</div>
+            </div>
+          </li>
+          <li class="n-item">
+            <div class="n-dot-wrap"><div class="n-dot nd-green"></div></div>
+            <div>
+              <div class="n-meta">Feb 2026</div>
+              <div class="n-title">Annual Sports Day 2026 scheduled. All students are encouraged to participate in track and field events.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Info Cards -->
+      <div class="info-stack reveal rv2">
+        <div class="info-c">
+          <div class="ic-hd">
+            <div class="ic-hd-icon i-b"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <h4>School Timings</h4>
+          </div>
+          <p>Monday – Friday: <strong>10:30 AM – 4:30 PM</strong><br>Saturday: <strong>10:30 AM – 1:30 PM</strong><br>Closed on Sundays &amp; public holidays</p>
+        </div>
+        <div class="info-c">
+          <div class="ic-hd">
+            <div class="ic-hd-icon i-s"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <h4>Academic Calendar</h4>
+          </div>
+          <p>Session: <strong>January – December</strong><br>Madhyamik Exam: <strong>February (WBBSE)</strong><br>Higher Secondary: <strong>March (WBCHSE)</strong></p>
+        </div>
+        <div class="info-c">
+          <div class="ic-hd">
+            <div class="ic-hd-icon i-e"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h4>UDISE &amp; Affiliation</h4>
+          </div>
+          <p>UDISE Code: <strong>19030809101</strong><br>Boards: <strong>WBBSE</strong> (Secondary) &amp; <strong>WBCHSE</strong> (H.S.)<br>Managed by: Dept. of Education, Govt. of WB</p>
+        </div>
+        <div class="info-c">
+          <div class="ic-hd">
+            <div class="ic-hd-icon i-p"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+            <h4>Student Scholarships</h4>
+          </div>
+          <p>National Means-cum-Merit Scholarship (Class VIII) and National Fellowship for Higher Education of ST students available. Apply via <strong>banglarshiksha.wb.gov.in</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ─── -->
+<section class="gallery-sec sec" id="gallery">
+  <div class="sec-inner">
+    <div class="eyebrow eyebrow-white reveal">Campus Life</div>
+    <h2 class="sec-title sec-title-white reveal rv1">School Gallery</h2>
+    <p class="reveal rv2" style="color:rgba(255,255,255,.6);font-size:.93rem;max-width:540px;line-height:1.85">A glimpse into the vibrant life, learning, and community at Nakkati Pushnadanga High School.</p>
+
+    <div class="gallery-grid">
+      <div class="g-item reveal">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Students at school" loading="lazy"/>
+        <div class="g-overlay">
+          <div class="g-label">School Community</div>
+          <div class="g-sub">Students &amp; Faculty</div>
+        </div>
+      </div>
+      <div class="g-item reveal rv1">
+        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80" alt="Classroom learning" loading="lazy"/>
+        <div class="g-overlay">
+          <div class="g-label">Classroom Learning</div>
+          <div class="g-sub">Interactive Sessions</div>
+        </div>
+      </div>
+      <div class="g-item reveal rv2">
+        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80" alt="School library and books" loading="lazy"/>
+        <div class="g-overlay">
+          <div class="g-label">Library &amp; Resources</div>
+          <div class="g-sub">Knowledge Hub</div>
+        </div>
+      </div>
+      <div class="g-item reveal rv3">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Cultural events" loading="lazy"/>
+        <div class="g-overlay">
+          <div class="g-label">Cultural Events</div>
+          <div class="g-sub">Annual Programmes</div>
+        </div>
+      </div>
+      <div class="g-item reveal rv2">
+        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80" alt="Sports and athletics" loading="lazy"/>
+        <div class="g-overlay">
+          <div class="g-label">Sports &amp; Athletics</div>
+          <div class="g-sub">Annual Sports Day</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact-sec sec" id="contact">
+  <div class="sec-inner">
+    <div class="eyebrow eyebrow-purple reveal">Get In Touch</div>
+    <h2 class="sec-title reveal rv1">Contact &amp; Location</h2>
+    <p class="sec-desc reveal rv2">We are located in Haribhanga village, Cooch Behar-I — easily accessible from Cooch Behar town by road, rail, or bus.</p>
+
+    <div class="contact-grid">
+      <div class="c-cards reveal">
+        <div class="c-card">
+          <div class="c-ic" style="background:var(--blue-light)">
+            <svg viewBox="0 0 24 24" style="stroke:var(--blue-mid)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h4>School Address</h4>
+            <p>Vill – Nakkati, P.O. – Pushnadanga<br>Haribhanga, Cooch Behar-I Block<br>Koch-Bihar District, West Bengal — PIN 736134</p>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-ic" style="background:var(--emerald-light)">
+            <svg viewBox="0 0 24 24" style="stroke:var(--emerald-mid)"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 012 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <h4>Phone &amp; Office Hours</h4>
+            <p>STD Code: 03582 · Contact the school office<br>Monday – Friday: 10:30 AM – 3:30 PM<br>Saturday: 10:30 AM – 1:30 PM</p>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-ic" style="background:var(--saffron-light)">
+            <svg viewBox="0 0 24 24" style="stroke:var(--saffron)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <h4>Official Portal</h4>
+            <p>Banglar Shiksha School Portal<br><span style="color:var(--blue-mid);font-size:.8rem">school.banglarshiksha.gov.in</span><br>UDISE Code: 19030809101</p>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-ic" style="background:var(--purple-light)">
+            <svg viewBox="0 0 24 24" style="stroke:var(--purple)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h4>Nearby Landmarks</h4>
+            <p>~1 km from Cooch Behar District HQ<br>Nearest Railway: Cooch Behar Junction (NF Railway)<br>Cluster School: Gouranga Bazar High School</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rv2">
+        <div class="map-wrapper">
+          <!-- Map Header -->
+          <div class="map-header">
+            <div class="map-header-left">
+              <div class="map-pin-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="map-header-title">Nakkati Pushnadanga High School</div>
+                <div class="map-header-sub">Haribhanga, Cooch Behar-I Block, West Bengal — 736134</div>
+              </div>
+            </div>
+            <span class="map-live-dot">Live Map</span>
+          </div>
+          <!-- Responsive iframe embed -->
+          <div class="map-embed-wrap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.6823526594762!2d89.45518026931452!3d26.233721918492314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e2fcca8bf44b65%3A0xcb2c1dedae055730!2sNakkati%20Pushnadanga%20High%20School!5e1!3m2!1sen!2sin!4v1782323803358!5m2!1sen!2sin"
+              width="600" height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Nakkati Pushnadanga High School Location"
+            ></iframe>
+          </div>
+          <!-- Map Footer -->
+          <div class="map-footer">
+            <div class="map-footer-info">
+              <strong>📍 School Location</strong>
+              Vill – Nakkati, P.O. – Pushnadanga, Haribhanga, Cooch Behar-I Block, WB 736134
+            </div>
+            <a href="https://maps.app.goo.gl/dDTb1Dr1FCCdURjeA" target="_blank" rel="noopener" class="map-btn">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open in Google Maps
+            </a>
+          </div>
+        </div>
+        <div class="how-to-reach">
+          <div class="htr-title">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            How to Reach Us
+          </div>
+          <p class="htr-item"><strong>By Road:</strong> Cooch Behar is connected via NH27. School is ~1 km south of town via Haribhanga Road.</p>
+          <p class="htr-item" style="margin-top:.6rem"><strong>By Rail:</strong> Cooch Behar Junction (NF Railway) is the nearest station, then local transport to Haribhanga.</p>
+          <p class="htr-item" style="margin-top:.6rem"><strong>By Bus:</strong> Local buses and auto-rickshaws run regularly from Cooch Behar town to Pushnadanga / Haribhanga.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-block">
+          <div class="footer-logo-ic">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div>
+            <div class="footer-brand-name">Nakkati Pushnadanga High School</div>
+            <div class="footer-brand-sub">Est. 1953 · Cooch Behar, West Bengal</div>
+          </div>
+        </div>
+        <p class="footer-about">Dedicated to nurturing excellence, instilling values, and empowering the communities of Cooch Behar-I Block for over seven decades.</p>
+        <div class="footer-socials">
+          <div class="social-btn" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </div>
+          <div class="social-btn" title="Website">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="social-btn" title="Map">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About School</a></li>
+          <li><a href="#history">Our History</a></li>
+          <li><a href="#academics">Academics</a></li>
+          <li><a href="#notices">Notice Board</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Academics</h4>
+        <ul>
+          <li><a href="#academics">Upper Primary (V–VIII)</a></li>
+          <li><a href="#academics">Secondary (IX–X)</a></li>
+          <li><a href="#academics">H.S. Science (XI–XII)</a></li>
+          <li><a href="#academics">H.S. Arts (XI–XII)</a></li>
+          <li><a href="#academics">School Library</a></li>
+          <li><a href="#academics">Co-Curricular</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://banglarshiksha.wb.gov.in" target="_blank" rel="noopener">Banglar Shiksha Portal</a></li>
+          <li><a href="https://school.banglarshiksha.gov.in/ws/website/index/19030809101" target="_blank" rel="noopener">School Portal</a></li>
+          <li><a href="https://wbbse.wb.gov.in" target="_blank" rel="noopener">WBBSE Official Site</a></li>
+          <li><a href="https://wbchse.wb.gov.in" target="_blank" rel="noopener">WBCHSE Official Site</a></li>
+          <li><a href="https://maps.app.goo.gl/dDTb1Dr1FCCdURjeA" target="_blank" rel="noopener">View on Google Maps</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Nakkati Pushnadanga High School (H.S.) · Cooch Behar, West Bengal · All rights reserved</span>
+      <span class="udise-badge">UDISE: 19030809101</span>
+      <span>Dept. of Education, Govt. of West Bengal · <a href="https://maps.app.goo.gl/dDTb1Dr1FCCdURjeA" target="_blank" rel="noopener">View on Maps</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Navbar scroll behavior ── */
+const nav = document.getElementById('mainNav');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (scrollY > 30) {
+    nav.classList.remove('at-top');
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.add('at-top');
+    nav.classList.remove('scrolled');
+  }
+  lastScroll = scrollY;
+}, { passive: true });
+
+/* ── Mobile nav ── */
+function toggleNav() {
+  document.getElementById('mobNav').classList.toggle('open');
+}
+document.addEventListener('click', e => {
+  const mobNav = document.getElementById('mobNav');
+  const burger = document.getElementById('burger');
+  if (!mobNav.contains(e.target) && !burger.contains(e.target)) {
+    mobNav.classList.remove('open');
+  }
+});
+
+/* ── Scroll reveal ── */
+const revealEls = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+revealEls.forEach(el => ro.observe(el));
+
+/* ── Counter animation ── */
+function countUp(el, target, suffix, isYear) {
+  if (isYear) { el.textContent = target; return; }
+  const duration = 1800;
+  let startTime = null;
+  const step = (timestamp) => {
+    if (!startTime) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target) + (suffix || '');
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target + (suffix || '');
+  };
+  requestAnimationFrame(step);
+}
+
+const counterEls = document.querySelectorAll('.stat-num[data-target]');
+const co = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      countUp(el, parseInt(el.dataset.target), el.dataset.suffix || '', el.hasAttribute('data-year'));
+      co.unobserve(el);
+    }
+  });
+}, { threshold: 0.6 });
+counterEls.forEach(el => co.observe(el));
+
+/* ── Active nav link ── */
+const sections = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let curr = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) curr = s.id;
+  });
+  navAs.forEach(a => {
+    const isCurrent = a.getAttribute('href') === '#' + curr;
+    a.style.color = isCurrent ? 'var(--saffron-bright)' : '';
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
